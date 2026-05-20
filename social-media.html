@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Social Media & Community Manager | Amazing Ideas</title>
+<link rel="stylesheet" href="ai-style.css">
+<style>
+.hero{min-height:100vh;display:flex;align-items:center;padding-top:80px;position:relative;overflow:hidden;}
+.hero-inner{max-width:1200px;margin:0 auto;padding:80px 40px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;z-index:2;}
+.hero-h1{font-size:clamp(2rem,4.5vw,3.6rem);font-weight:900;line-height:1.08;margin-bottom:24px;letter-spacing:-1px;}
+.hero-sub{color:rgba(255,255,255,0.65);font-size:16px;line-height:1.7;margin-bottom:36px;max-width:520px;}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;}
+.phone-mockup{background:rgba(10,10,18,0.9);border:1px solid rgba(255,215,0,0.25);border-radius:28px;overflow:hidden;max-width:300px;margin:0 auto;box-shadow:0 0 60px rgba(255,215,0,0.08);}
+.phone-header{padding:16px 20px 10px;border-bottom:1px solid rgba(255,215,0,0.1);display:flex;align-items:center;justify-content:space-between;}
+.phone-header span{font-family:'Orbitron',sans-serif;font-size:10px;color:var(--gold);letter-spacing:2px;}
+.feed-item{padding:14px 20px;border-bottom:1px solid rgba(255,255,255,0.04);}
+.feed-item-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.feed-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#E0A800);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#000;flex-shrink:0;}
+.feed-name{font-size:12px;font-weight:600;}
+.feed-time{font-size:10px;color:rgba(255,255,255,0.35);}
+.feed-text{font-size:11px;color:rgba(255,255,255,0.65);line-height:1.5;margin-bottom:8px;}
+.feed-stats{display:flex;gap:16px;}
+.feed-stat{font-size:10px;color:var(--gold);}
+.metric-row{display:flex;justify-content:space-around;padding:16px 20px;}
+.metric-item{text-align:center;}
+.metric-num{font-family:'Orbitron',sans-serif;font-size:16px;font-weight:900;color:var(--gold);}
+.metric-lbl{font-size:9px;color:rgba(255,255,255,0.4);letter-spacing:1px;text-transform:uppercase;}
+.stats-inner{max-width:1200px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center;}
+.stat-label{font-size:12px;color:rgba(255,255,255,0.5);margin-top:6px;letter-spacing:0.5px;}
+.section{padding:100px 0;}
+.section-inner{max-width:1200px;margin:0 auto;padding:0 40px;}
+.section-header{text-align:center;margin-bottom:64px;}
+.section-title{font-size:clamp(1.6rem,3vw,2.6rem);font-weight:900;margin-bottom:16px;line-height:1.15;}
+.section-desc{color:rgba(255,255,255,0.6);font-size:16px;max-width:580px;margin:0 auto;line-height:1.7;}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.feat-card{padding:36px 28px;}
+.feat-title{font-family:'Orbitron',sans-serif;font-size:14px;font-weight:700;margin-bottom:12px;letter-spacing:0.5px;}
+.feat-desc{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.65;}
+.platforms-row{display:flex;justify-content:center;flex-wrap:wrap;gap:16px;margin-top:48px;}
+.platform-chip{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,215,0,0.15);border-radius:4px;padding:12px 20px;font-size:13px;font-weight:600;transition:all 0.3s;}
+.platform-chip:hover{border-color:var(--gold);background:rgba(255,215,0,0.06);}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;}
+.process-grid::before{content:'';position:absolute;top:28px;left:12.5%;right:12.5%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,215,0,0.3),transparent);}
+.process-step{text-align:center;padding:0 16px;}
+.step-num{width:56px;height:56px;border-radius:50%;background:rgba(255,215,0,0.08);border:1px solid rgba(255,215,0,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-family:'Orbitron',sans-serif;font-size:18px;font-weight:900;color:var(--gold);}
+.step-title{font-family:'Orbitron',sans-serif;font-size:12px;font-weight:700;margin-bottom:8px;letter-spacing:0.5px;}
+.step-desc{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.6;}
+.results-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+.result-item{margin-bottom:28px;}
+.result-label{font-size:12px;color:rgba(255,255,255,0.5);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;}
+.result-bar-wrap{height:6px;background:rgba(255,255,255,0.05);border-radius:3px;overflow:hidden;}
+.result-bar{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-dark));border-radius:3px;}
+.result-val{font-family:'Orbitron',sans-serif;font-size:13px;color:var(--gold);margin-top:6px;}
+.form-wrap{background:rgba(10,10,18,0.6);border:1px solid rgba(255,215,0,0.18);border-radius:4px;padding:48px;max-width:560px;margin:0 auto;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.form-group{display:flex;flex-direction:column;}
+.form-group.full{grid-column:1/-1;}
+.countdown-row{display:flex;justify-content:center;gap:32px;margin:32px 0;}
+.countdown-box{text-align:center;}
+.countdown-num{font-family:'Orbitron',sans-serif;font-size:2.4rem;font-weight:900;color:var(--gold);display:block;}
+.countdown-label{font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:2px;text-transform:uppercase;}
+.testimonial-card{padding:32px 28px;}
+.stars{color:var(--gold);font-size:14px;margin-bottom:16px;letter-spacing:3px;}
+.testimonial-text{font-size:13px;color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:20px;font-style:italic;}
+.testimonial-author{font-size:12px;font-weight:600;}
+.testimonial-role{font-size:11px;color:rgba(255,255,255,0.4);margin-top:2px;}
+@media(max-width:768px){
+  .hero-inner,.results-grid{grid-template-columns:1fr;gap:40px;}
+  .feat-grid{grid-template-columns:1fr;}
+  .process-grid{grid-template-columns:1fr 1fr;gap:32px;}
+  .stats-inner{grid-template-columns:1fr 1fr;}
+  .form-grid{grid-template-columns:1fr;}
+  .process-grid::before{display:none;}
+}
+</style>
+</head>
+<body>
+<canvas id="particles-canvas"></canvas>
+
+<nav class="ai-nav">
+  <a href="index.html" class="nav-brand">
+    <img src="logo.png" alt="Amazing Ideas" class="nav-brand-logo" onerror="this.style.display='none'">
+    <span class="nav-brand-text">Amazing Ideas</span>
+  </a>
+  <ul class="nav-links-list">
+    <li><a href="servicios.html">Servicios</a></li>
+    <li><a href="automatizacion-ia.html">IA</a></li>
+    <li><a href="social-media.html">Social Media</a></li>
+    <li><a href="diseno-web.html">Web</a></li>
+    <li><a href="inmobiliaria.html">Inmobiliaria</a></li>
+  </ul>
+  <a href="#contacto" class="nav-cta-btn">Estrategia Gratis</a>
+</nav>
+
+<section class="hero hero-grid">
+  <div class="hero-inner">
+    <div class="hero-content sr">
+      <div style="margin-bottom:24px;">
+        <span class="badge-gold"><span class="badge-dot"></span>Social Media & Community Manager</span>
+      </div>
+      <h1 class="hero-h1">Convierte Seguidores en<br><span class="gradient-text">Clientes Reales</span></h1>
+      <p class="hero-sub">Gestionamos tu presencia digital con estrategia IA, contenido que viraliza y comunidades que compran. Resultados medibles, no solo likes.</p>
+      <div class="hero-btns">
+        <a href="#contacto" class="btn-gold">Quiero Más Clientes</a>
+        <a href="#resultados" class="btn-ghost">Ver Resultados</a>
+      </div>
+      <div style="margin-top:36px;display:flex;gap:32px;">
+        <div><div class="stat-num" style="font-size:1.6rem;">+340%</div><div style="font-size:11px;color:rgba(255,255,255,0.45);">Engagement promedio</div></div>
+        <div><div class="stat-num" style="font-size:1.6rem;">+280%</div><div style="font-size:11px;color:rgba(255,255,255,0.45);">Alcance orgánico</div></div>
+        <div><div class="stat-num" style="font-size:1.6rem;">6x</div><div style="font-size:11px;color:rgba(255,255,255,0.45);">ROI en campañas</div></div>
+      </div>
+    </div>
+    <div class="sr" style="animation-delay:0.2s">
+      <div class="phone-mockup float">
+        <div class="phone-header">
+          <span>AMAZING IDEAS</span>
+          <span style="color:rgba(255,255,255,0.4);font-size:9px;">LIVE FEED</span>
+        </div>
+        <div class="feed-item">
+          <div class="feed-item-header">
+            <div class="feed-avatar">AI</div>
+            <div>
+              <div class="feed-name">@amazingideas.cl</div>
+              <div class="feed-time">Hace 2 min</div>
+            </div>
+          </div>
+          <div class="feed-text">🚀 Estrategia validada: +127% ventas en 30 días para nuestro cliente...</div>
+          <div class="feed-stats"><span class="feed-stat">❤️ 847</span><span class="feed-stat">💬 134</span><span class="feed-stat">🔄 289</span></div>
+        </div>
+        <div class="feed-item">
+          <div class="feed-item-header">
+            <div class="feed-avatar" style="background:linear-gradient(135deg,#0F0,#0A0);">✓</div>
+            <div>
+              <div class="feed-name">Campaña Activa</div>
+              <div class="feed-time">Publicado hace 1h</div>
+            </div>
+          </div>
+          <div class="feed-text">Contenido optimizado con IA en 5 plataformas simultáneamente ✨</div>
+          <div class="feed-stats"><span class="feed-stat">👁 12.4K</span><span class="feed-stat">📲 342 clicks</span></div>
+        </div>
+        <div class="metric-row">
+          <div class="metric-item"><div class="metric-num">4.8K</div><div class="metric-lbl">Nuevos seg.</div></div>
+          <div class="metric-item"><div class="metric-num">87%</div><div class="metric-lbl">Engagement</div></div>
+          <div class="metric-item"><div class="metric-num">6x</div><div class="metric-lbl">ROI</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="sr"><div class="stat-num">+340%</div><div class="stat-label">Engagement promedio</div></div>
+    <div class="sr"><div class="stat-num">50K+</div><div class="stat-label">Seguidores gestionados</div></div>
+    <div class="sr"><div class="stat-num">24/7</div><div class="stat-label">Monitoreo activo</div></div>
+    <div class="sr"><div class="stat-num">6x</div><div class="stat-label">ROI en campañas</div></div>
+  </div>
+</div>
+
+<section class="section" style="padding-top:60px;padding-bottom:60px;border-bottom:1px solid var(--gold-border);">
+  <div class="section-inner">
+    <div class="section-header sr">
+      <span class="section-label">Ecosistema Digital</span>
+      <h2 class="section-title">Presencia Total en <span class="gradient-text">Todas las Plataformas</span></h2>
+    </div>
+    <div class="platforms-row sr">
+      <div class="platform-chip">📸 Instagram</div>
+      <div class="platform-chip">f Facebook</div>
+      <div class="platform-chip">𝕏 Twitter/X</div>
+      <div class="platform-chip">▶ YouTube</div>
+      <div class="platform-chip">♪ TikTok</div>
+      <div class="platform-chip">in LinkedIn</div>
+      <div class="platform-chip">📌 Pinterest</div>
+      <div class="platform-chip">📱 WhatsApp</div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-inner">
+    <div class="section-header sr">
+      <span class="section-label">Nuestro Sistema</span>
+      <h2 class="section-title">Social Media con <span class="gradient-text">Inteligencia Artificial</span></h2>
+      <p class="section-desc">No publicamos por publicar. Cada post, cada historia, cada reel está diseñado estratégicamente para convertir audiencia en compradores.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="glass-card feat-card sr">
+        <div class="icon-box">
+          <svg width="22" height="22" fill="none" stroke="#FFD700" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="feat-title">Estrategia IA Personalizada</div>
+        <div class="feat-desc">Analizamos tu industria, competidores y audiencia con IA para crear una estrategia de contenidos única que resuena con tu cliente ideal.</div>
+      </div>
+      <div class="glass-card feat-card sr">
+        <div class="icon-box">
+          <svg width="22" height="22" fill="none" stroke="#FFD700" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <div class="feat-title">Contenido que Convierte</div>
+        <div class="feat-desc">Copywriting potenciado por neuromarketing: hooks, storytelling y llamadas a la acción diseñadas para generar clics y ventas reales.</div>
+      </div>
+      <div class="glass-card feat-card sr">
+        <div class="icon-box">
+          <svg width="22" height="22" fill="none" stroke="#FFD700" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <div class="feat-title">Publicación Automatizada</div>
+        <div class="feat-desc">Calendario editorial inteligente. Publicamos en los horarios de mayor impacto para maximizar alcance orgánico en cada plataforma.</div>
+      </div>
+      <div class="glass-card feat-card sr">
+        <div class="icon-box">
+          <svg width="22" height="22" fill="none" stroke="#FFD700" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div class="feat-title">Community Management 24/7</div>
+        <div class="feat-desc">Respondemos comentarios, DMs y menciones. Construimos relaciones genuinas y manejamos crisis de reputación en tiempo real.</div>
+      </div>
+      <div class="glass-card feat-card sr">
+        <div class="icon-box">
+          <svg width="22" height="22" fill="none" stroke="#FFD700" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="feat-title">Analytics & Reporting</div>
+        <div class="feat-desc">Reportes semanales con KPIs claros: alcance, engagement, conversiones y ROI. Datos que permiten decisiones inteligentes.</div>
+      </div>
+      <div class="glass-card feat-card sr">
+        <div class="icon-box">
+          <svg width="22" height="22" fill="none" stroke="#FFD700" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div class="feat-title">Influencer Marketing</div>
+        <div class="feat-desc">Identificamos y gestionamos alianzas con micro y macro influencers verificados que conectan con tu nicho exacto.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:rgba(10,10,18,0.5);border-top:1px solid var(--gold-border);border-bottom:1px solid var(--gold-border);">
+  <div class="section-inner">
+    <div class="section-header sr">
+      <span class="section-label">Metodología</span>
+      <h2 class="section-title">Tu Éxito en <span class="gradient-text">4 Pasos</span></h2>
+    </div>
+    <div class="process-grid sr">
+      <div class="process-step">
+        <div class="step-num">01</div>
+        <div class="step-title">Auditoría & Diagnóstico</div>
+        <div class="step-desc">Analizamos tu estado actual, competidores y oportunidades con herramientas IA de última generación.</div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">02</div>
+        <div class="step-title">Estrategia & Calendario</div>
+        <div class="step-desc">Diseñamos tu plan de contenidos con objetivos SMART, pilares de marca y calendario editorial de 90 días.</div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">03</div>
+        <div class="step-title">Producción & Publicación</div>
+        <div class="step-desc">Creamos y publicamos contenido premium: diseños, videos, copys y stories en los horarios de mayor impacto.</div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">04</div>
+        <div class="step-title">Optimización Continua</div>
+        <div class="step-desc">Medimos, aprendemos y mejoramos semana a semana. La IA detecta qué funciona y amplificamos los resultados.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="resultados">
+  <div class="section-inner">
+    <div class="section-header sr">
+      <span class="section-label">Casos de Éxito</span>
+      <h2 class="section-title">Resultados Reales de <span class="gradient-text">Clientes Reales</span></h2>
+    </div>
+    <div class="results-grid sr">
+      <div>
+        <div class="result-item">
+          <div class="result-label">Crecimiento de seguidores</div>
+          <div class="result-bar-wrap"><div class="result-bar" style="width:92%;"></div></div>
+          <div class="result-val">+340% en 6 meses</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Tasa de engagement</div>
+          <div class="result-bar-wrap"><div class="result-bar" style="width:85%;"></div></div>
+          <div class="result-val">8.4% promedio (vs 1.2% industria)</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Ventas desde redes sociales</div>
+          <div class="result-bar-wrap"><div class="result-bar" style="width:78%;"></div></div>
+          <div class="result-val">+280% en ingresos atribuidos</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Alcance orgánico</div>
+          <div class="result-bar-wrap"><div class="result-bar" style="width:95%;"></div></div>
+          <div class="result-val">+620% sin inversión en ads</div>
+        </div>
+      </div>
+      <div>
+        <div class="glass-card testimonial-card" style="margin-bottom:16px;">
+          <div class="stars">★★★★★</div>
+          <div class="testimonial-text">"Pasamos de 2,000 a 47,000 seguidores en 8 meses. El 34% de nuestras ventas ahora viene de Instagram. Amazing Ideas transformó nuestro negocio."</div>
+          <div class="testimonial-author">Carolina Vega</div>
+          <div class="testimonial-role">Dueña — Boutique Moda Santiago</div>
+        </div>
+        <div class="glass-card testimonial-card">
+          <div class="stars">★★★★★</div>
+          <div class="testimonial-text">"Por cada peso invertido en social media, generamos 6 en ventas. El equipo responde los DMs mejor que nosotros mismos."</div>
+          <div class="testimonial-author">Rodrigo Muñoz</div>
+          <div class="testimonial-role">CEO — Restaurante Grupo RM</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="urgency-banner sr">
+  <div style="max-width:800px;margin:0 auto;padding:0 40px;text-align:center;">
+    <span class="section-label" style="display:block;text-align:center;">Oferta Limitada</span>
+    <h2 style="font-size:clamp(1.4rem,3vw,2.4rem);margin-bottom:16px;">Solo <span class="gradient-text">3 Cupos</span> Disponibles Este Mes</h2>
+    <p style="color:rgba(255,255,255,0.6);margin-bottom:32px;">Trabajamos con un número limitado de clientes para garantizar resultados excepcionales.</p>
+    <div class="countdown-row">
+      <div class="countdown-box"><span class="countdown-num" id="cd-days">07</span><span class="countdown-label">Días</span></div>
+      <div class="countdown-box"><span class="countdown-num" id="cd-hours">14</span><span class="countdown-label">Horas</span></div>
+      <div class="countdown-box"><span class="countdown-num" id="cd-mins">32</span><span class="countdown-label">Min</span></div>
+      <div class="countdown-box"><span class="countdown-num" id="cd-secs">00</span><span class="countdown-label">Seg</span></div>
+    </div>
+    <a href="#contacto" class="btn-gold">Reservar Mi Cupo Ahora</a>
+  </div>
+</div>
+
+<section class="cta-section section" id="contacto">
+  <div class="section-inner">
+    <div class="section-header sr">
+      <span class="section-label">Empecemos</span>
+      <h2 class="section-title">Solicita Tu <span class="gradient-text">Estrategia Gratuita</span></h2>
+      <p class="section-desc">Analizamos tu presencia digital actual y te entregamos un plan de acción personalizado. Sin compromiso, con valor real.</p>
+    </div>
+    <div class="form-wrap sr">
+      <div class="form-grid">
+        <div class="form-group"><label class="ai-label">Nombre</label><input type="text" class="ai-input" placeholder="Tu nombre"></div>
+        <div class="form-group"><label class="ai-label">Empresa</label><input type="text" class="ai-input" placeholder="Tu empresa"></div>
+        <div class="form-group"><label class="ai-label">Email</label><input type="email" class="ai-input" placeholder="tu@email.com"></div>
+        <div class="form-group"><label class="ai-label">WhatsApp</label><input type="tel" class="ai-input" placeholder="+56 9 XXXX XXXX"></div>
+        <div class="form-group full"><label class="ai-label">¿Qué plataformas manejas?</label><input type="text" class="ai-input" placeholder="Instagram, Facebook, TikTok..."></div>
+        <div class="form-group full"><label class="ai-label">¿Cuál es tu objetivo principal?</label><textarea class="ai-input" rows="3" placeholder="Más seguidores, más ventas, mejor posicionamiento..."></textarea></div>
+        <div class="form-group full" style="margin-top:8px;"><button class="btn-gold" style="width:100%;padding:16px;">Quiero Mi Estrategia Gratuita →</button></div>
+      </div>
+      <p style="text-align:center;font-size:11px;color:rgba(255,255,255,0.3);margin-top:16px;">🔒 Respondemos en menos de 2 horas hábiles.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="ai-footer">
+  <span>© 2025 Amazing Ideas — Todos los derechos reservados</span>
+  <div style="display:flex;gap:24px;">
+    <a href="servicios.html">Servicios</a>
+    <a href="index.html">Inicio</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  const c=document.getElementById('particles-canvas'),ctx=c.getContext('2d');
+  let W=window.innerWidth,H=window.innerHeight;c.width=W;c.height=H;
+  const pts=[];for(let i=0;i<80;i++)pts.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.5+0.3,vx:(Math.random()-0.5)*0.3,vy:(Math.random()-0.5)*0.3,a:Math.random()});
+  function draw(){ctx.clearRect(0,0,W,H);pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(255,215,0,${0.3+Math.sin(Date.now()*0.001+p.a)*0.2})`;ctx.fill();});requestAnimationFrame(draw);}
+  draw();window.addEventListener('resize',()=>{W=window.innerWidth;H=window.innerHeight;c.width=W;c.height=H;});
+})();
+gsap.registerPlugin(ScrollTrigger);
+document.querySelectorAll('.sr').forEach(el=>{gsap.fromTo(el,{opacity:0,y:40},{opacity:1,y:0,duration:0.8,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none none'}});});
+(function(){
+  const end=new Date(Date.now()+7*24*60*60*1000+14*60*60*1000+32*60*1000);
+  function tick(){const diff=end-Date.now();if(diff<0)return;const d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);document.getElementById('cd-days').textContent=String(d).padStart(2,'0');document.getElementById('cd-hours').textContent=String(h).padStart(2,'0');document.getElementById('cd-mins').textContent=String(m).padStart(2,'0');document.getElementById('cd-secs').textContent=String(s).padStart(2,'0');}
+  tick();setInterval(tick,1000);
+})();
+</script>
+</body>
+</html>

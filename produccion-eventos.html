@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Producción de Eventos | Amazing Ideas</title>
+<link rel="stylesheet" href="ai-style.css">
+<style>
+.hero{min-height:100vh;display:flex;align-items:center;padding-top:80px;position:relative;overflow:hidden;}
+.hero-inner{max-width:1200px;margin:0 auto;padding:80px 40px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;z-index:2;}
+.hero-h1{font-size:clamp(2rem,4.5vw,3.6rem);font-weight:900;line-height:1.08;margin-bottom:24px;letter-spacing:-1px;}
+.hero-sub{color:rgba(255,255,255,0.65);font-size:16px;line-height:1.7;margin-bottom:36px;}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;}
+.event-mockup{background:rgba(10,10,18,0.9);border:1px solid rgba(255,215,0,0.25);border-radius:16px;overflow:hidden;box-shadow:0 0 60px rgba(255,215,0,0.08);}
+.event-header{padding:20px;background:linear-gradient(135deg,rgba(255,215,0,0.1),rgba(255,215,0,0.02));border-bottom:1px solid rgba(255,215,0,0.12);text-align:center;}
+.event-title-sm{font-family:'Orbitron',sans-serif;font-size:13px;font-weight:900;color:var(--gold);}
+.event-date-sm{font-size:10px;color:rgba(255,255,255,0.4);margin-top:4px;}
+.event-body{padding:20px;}
+.event-stage{height:80px;background:linear-gradient(135deg,rgba(255,215,0,0.08),rgba(255,215,0,0.02));border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:24px;}
+.event-checklist{margin-bottom:12px;}
+.event-check-item{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:11px;color:rgba(255,255,255,0.6);}
+.event-check-icon{color:var(--gold);font-size:10px;}
+.event-stats-row{display:flex;justify-content:space-around;padding-top:12px;}
+.event-stat-num{font-family:'Orbitron',sans-serif;font-size:14px;color:var(--gold);font-weight:900;}
+.event-stat-lbl{font-size:8px;color:rgba(255,255,255,0.3);}
+.stats-inner{max-width:1200px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center;}
+.stat-label{font-size:12px;color:rgba(255,255,255,0.5);margin-top:6px;}
+.section{padding:100px 0;}
+.section-inner{max-width:1200px;margin:0 auto;padding:0 40px;}
+.section-header{text-align:center;margin-bottom:64px;}
+.section-title{font-size:clamp(1.6rem,3vw,2.6rem);font-weight:900;margin-bottom:16px;line-height:1.15;}
+.section-desc{color:rgba(255,255,255,0.6);font-size:16px;max-width:580px;margin:0 auto;line-height:1.7;}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.feat-card{padding:36px 28px;}
+.feat-title{font-family:'Orbitron',sans-serif;font-size:14px;font-weight:700;margin-bottom:12px;letter-spacing:0.5px;}
+.feat-desc{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.65;}
+.event-types{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.event-type-card{padding:24px 16px;text-align:center;background:rgba(255,255,255,0.03);border:1px solid rgba(255,215,0,0.1);border-radius:8px;transition:all 0.3s;}
+.event-type-card:hover{border-color:rgba(255,215,0,0.3);transform:translateY(-4px);}
+.event-type-icon{font-size:28px;margin-bottom:12px;}
+.event-type-name{font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;color:var(--gold);letter-spacing:1px;}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;}
+.process-grid::before{content:'';position:absolute;top:28px;left:12.5%;right:12.5%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,215,0,0.3),transparent);}
+.process-step{text-align:center;padding:0 16px;}
+.step-num{width:56px;height:56px;border-radius:50%;background:rgba(255,215,0,0.08);border:1px solid rgba(255,215,0,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-family:'Orbitron',sans-serif;font-size:18px;font-weight:900;color:var(--gold);}
+.step-title{font-family:'Orbitron',sans-serif;font-size:12px;font-weight:700;margin-bottom:8px;}
+.step-desc{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.6;}
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.testimonial-card{padding:32px 28px;}
+.stars{color:var(--gold);font-size:14px;margin-bottom:16px;letter-spacing:3px;}
+.testimonial-text{font-size:13px;color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:20px;font-style:italic;}
+.testimonial-author{font-size:12px;font-weight:600;}
+.testimonial-role{font-size:11px;color:rgba(255,255,255,0.4);margin-top:2px;}
+.form-wrap{background:rgba(10,10,18,0.6);border:1px solid rgba(255,215,0,0.18);border-radius:4px;padding:48px;max-width:560px;margin:0 auto;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.form-group{display:flex;flex-direction:column;}
+.form-group.full{grid-column:1/-1;}
+@media(max-width:768px){
+  .hero-inner{grid-template-columns:1fr;gap:40px;}
+  .feat-grid,.testimonials-grid{grid-template-columns:1fr;}
+  .event-types{grid-template-columns:1fr 1fr;}
+  .process-grid{grid-template-columns:1fr 1fr;gap:32px;}
+  .stats-inner{grid-template-columns:1fr 1fr;}
+  .form-grid{grid-template-columns:1fr;}
+  .process-grid::before{display:none;}
+}
+</style>
+</head>
+<body>
+<canvas id="particles-canvas"></canvas>
+
+<nav class="ai-nav">
+  <a href="index.html" class="nav-brand">
+    <img src="logo.png" alt="Amazing Ideas" class="nav-brand-logo" onerror="this.style.display='none'">
+    <span class="nav-brand-text">Amazing Ideas</span>
+  </a>
+  <ul class="nav-links-list">
+    <li><a href="servicios.html">Servicios</a></li>
+    <li><a href="automatizacion-ia.html">IA</a></li>
+    <li><a href="social-media.html">Social Media</a></li>
+    <li><a href="diseno-web.html">Web</a></li>
+    <li><a href="inmobiliaria.html">Inmobiliaria</a></li>
+  </ul>
+  <a href="#contacto" class="nav-cta-btn">Cotizar Evento</a>
+</nav>
+
+<section class="hero hero-grid">
+  <div class="hero-inner">
+    <div class="sr">
+      <div style="margin-bottom:24px;"><span class="badge-gold"><span class="badge-dot"></span>Producción de Eventos</span></div>
+      <h1 class="hero-h1">Eventos que<br><span class="gradient-text">Dejan Huella</span></h1>
+      <p class="hero-sub">Producimos experiencias únicas que conectan personas, fortalecen marcas y generan resultados de negocio. Desde lanzamientos corporativos hasta conferencias internacionales.</p>
+      <div class="hero-btns">
+        <a href="#contacto" class="btn-gold">Cotizar Mi Evento</a>
+        <a href="#tipos" class="btn-ghost">Tipos de Eventos</a>
+      </div>
+      <div style="margin-top:36px;display:flex;gap:32px;">
+        <div><div class="stat-num" style="font-size:1.6rem;">400+</div><div style="font-size:11px;color:rgba(255,255,255,0.45);">Eventos producidos</div></div>
+        <div><div class="stat-num" style="font-size:1.6rem;">50K+</div><div style="font-size:11px;color:rgba(255,255,255,0.45);">Asistentes impactados</div></div>
+        <div><div class="stat-num" style="font-size:1.6rem;">100%</div><div style="font-size:11px;color:rgba(255,255,255,0.45);">Eventos exitosos</div></div>
+      </div>
+    </div>
+    <div class="sr" style="animation-delay:0.2s">
+      <div class="event-mockup float">
+        <div class="event-header">
+          <div class="event-title-sm">LANZAMIENTO DE PRODUCTO 2025</div>
+          <div class="event-date-sm">Auditorio Principal · 500 personas</div>
+        </div>
+        <div class="event-body">
+          <div class="event-stage">🎪</div>
+          <div class="event-checklist">
+            <div class="event-check-item"><span class="event-check-icon">✓</span>Iluminación y sonido profesional</div>
+            <div class="event-check-item"><span class="event-check-icon">✓</span>Pantallas LED y video mapping</div>
+            <div class="event-check-item"><span class="event-check-icon">✓</span>Catering y logística</div>
+            <div class="event-check-item"><span class="event-check-icon">✓</span>Transmisión en vivo</div>
+            <div class="event-check-item"><span class="event-check-icon">✓</span>Fotografía y video del evento</div>
+          </div>
+          <div class="event-stats-row">
+            <div><div class="event-stat-num">500</div><div class="event-stat-lbl">Asistentes</div></div>
+            <div><div class="event-stat-num">98%</div><div class="event-stat-lbl">Satisfacción</div></div>
+            <div><div class="event-stat-num">12K</div><div class="event-stat-lbl">Streaming</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="sr"><div class="stat-num">400+</div><div class="stat-label">Eventos producidos</div></div>
+    <div class="sr"><div class="stat-num">50K+</div><div class="stat-label">Asistentes impactados</div></div>
+    <div class="sr"><div class="stat-num">98%</div><div class="stat-label">Satisfacción de clientes</div></div>
+    <div class="sr"><div class="stat-num">0</div><div class="stat-label">Eventos fallidos</div></div>
+  </div>
+</div>
+
+<section class="section" id="tipos">
+  <div class="section-inner">
+    <div class="section-header sr">
+      <span class="section-label">Tipos de Eventos</span>
+      <h2 class="section-title">Producimos <span class="gradient-text">Todo Tipo de Experiencias</span></h2>
+    </div>
+    <div class="event-types sr">
+      <div class="event-type-card"><div class="event-type-icon">🚀</div><div class="event-type-name">Lanzamientos</div></div>
+      <div class="event-type-card"><div class="event-type-icon">🎓</div><div class="event-type-name">Conferencias</div></div>
+      <div class="event-type-card"><div class="event-type-icon">🏆</div><div class="event-type-name">Premios & Galas</div></div>
+      <div class="event-type-card"><div class="event-type-icon">🤝</div><div class="event-type-name">Corporativos</div></div>
+      <div class="event-type-card"><div class="event-type-icon">🎵</div><div class="event-type-name">Conciertos</div></div>
+      <div class="event-type-card"><div class="event-type-icon">🎪</div><div class="event-type-name">Ferias & Expos</div></div>
+      <div class="event-type-card"><div class="event-type-icon">💒</div><div class="event-type-name">Bodas Premium</div></div>
+      <div class="event-type-card"><div class="event-type-icon">📡</div><div class="event-type-name">Eventos Híbridos</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:rgba(10,10,18,0.5);border-top:1px solid var(--gold-border);border-bottom:1px solid var(--gold-border);">
+  <div class="section-inner">
+    <div class="section-header sr">
+      <span class="section-label">Nuestros Servicios</span>
+      <h2 class="section-title">Producción Integral <span class="gradient-text">Llave en Mano</span></h2>
+      <p class="section-desc">Nos hacemos cargo de cada detalle. Tú solo te preocupas de disfrutar y hacer networking. Nosotros garantizamos que todo funcione perfecto.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="glass-card feat-card sr">
+        <div class="icon-box">
+          <svg width="22" height="22" fill="none" stroke="#FFD700" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="feat-title">Producción & Logística</div>
+        <div class="feat-desc">Coordinación integral: locaciones, proveedores, catering, transporte y personal. Un director de producción dedicado a tu evento de principio a fin.</div>
+      </div>
+      <div class="glass-card feat-card sr">
+        <div class="icon-box">
+          <svg width="22" height="22" fill="none" stroke="#FFD700" stroke-width="2" viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+        </div>
+        <div class="feat-title">Sonido, Luz & Escenografía</div>
+        <div class="feat-desc">Equipamiento audiovisual profesional: sonido surround, iluminación RGBW, pantallas LED, video mapping y escenografía personalizada a tu marca.</div>
+      </div>
+      <div class="glass-card feat-card sr">
+        <div class="icon-box">
+          <svg width="22" height="22" fill="none" stroke="#FFD700" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.36 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div class="feat-title">Transmisión en Vivo</div>
+        <div class="feat-desc">Streaming profesional multiplatforma: YouTube, Zoom, Teams y plataformas propias. Llegamos a tu audiencia global con calidad broadcast.</div>
+      </div>
+      <div class="glass-card feat-card sr">
+        <div class="icon-box">
+          <svg width="22" height="22" fill="none" stroke="#FFD700" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <div class="feat-title">Diseño & Branding del Evento</div>
+        <div class="feat-desc">Identidad visual completa: invitaciones, señalética, material de bienvenida, photo booth y decoración coherente con tu marca.</div>
+      </div>
+      <div class="glass-card feat-card sr">
+        <div class="icon-box">
+          <svg width="22" height="22" fill="none" stroke="#FFD700" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <div class="feat-title">Fotografía & Video del Evento</div>
+        <div class="feat-desc">Cobertura completa con fotógrafos y camarógrafos profesionales. Entregamos galería digital y video resumen en 48 horas post-evento.</div>
+      </div>
+      <div class="glass-card feat-card sr">
+        <div class="icon-box">
+          <svg width="22" height="22" fill="none" stroke="#FFD700" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="feat-title">Protocolo & Seguridad</div>
+        <div class="feat-desc">Gestión de accesos, credenciales, protocolo de VIPs y coordinación con seguridad privada. Todo bajo control para que nada falle.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-inner">
+    <div class="section-header sr">
+      <span class="section-label">Proceso</span>
+      <h2 class="section-title">Tu Evento en <span class="gradient-text">4 Etapas</span></h2>
+    </div>
+    <div class="process-grid sr">
+      <div class="process-step">
+        <div class="step-num">01</div>
+        <div class="step-title">Brief & Concepto</div>
+        <div class="step-desc">Reunión inicial para entender objetivos, audiencia, presupuesto y visión. Desarrollamos el concepto creativo del evento.</div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">02</div>
+        <div class="step-title">Planificación</div>
+        <div class="step-desc">Plan maestro con timelines, proveedores, checklist y contingencias. Todo documentado y coordinado para cero sorpresas el día del evento.</div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">03</div>
+        <div class="step-title">Producción & Montaje</div>
+        <div class="step-desc">Coordinamos montaje, técnicos, catering y personal. Rehearsal previo para garantizar que todo funcione perfectamente.</div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">04</div>
+        <div class="step-title">Ejecución & Cierre</div>
+        <div class="step-desc">Dirección en vivo, gestión de contingencias y desmontaje. Informe post-evento con resultados, fotos y KPIs de éxito.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:rgba(10,10,18,0.5);border-top:1px solid var(--gold-border);border-bottom:1px solid var(--gold-border);">
+  <div class="section-inner">
+    <div class="section-header sr">
+      <span class="section-label">Lo que dicen nuestros clientes</span>
+      <h2 class="section-title">Eventos que <span class="gradient-text">Superan Expectativas</span></h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="glass-card testimonial-card sr">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-text">"Organizaron nuestro lanzamiento para 400 personas sin un solo problema. El diseño del escenario fue increíble y el streaming llegó a 8,000 personas adicionales."</div>
+        <div class="testimonial-author">Marcela Torres</div>
+        <div class="testimonial-role">Marketing Director — TechCorp Chile</div>
+      </div>
+      <div class="glass-card testimonial-card sr">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-text">"La gala de premiación de nuestra empresa fue todo lo que imaginamos y más. El equipo de Amazing Ideas tiene una capacidad de coordinación extraordinaria."</div>
+        <div class="testimonial-author">Felipe Andrade</div>
+        <div class="testimonial-role">CEO — Grupo Andrade Inversiones</div>
+      </div>
+      <div class="glass-card testimonial-card sr">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-text">"Contratamos para nuestra conferencia anual de 1,200 personas. Sonido, luz, logística y catering: todo perfecto. Los volveremos a contratar sin duda."</div>
+        <div class="testimonial-author">Andrea Molina</div>
+        <div class="testimonial-role">Gerenta General — Asociación Industria</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section section" id="contacto">
+  <div class="section-inner">
+    <div class="section-header sr">
+      <span class="section-label">Empecemos</span>
+      <h2 class="section-title">Cotiza Tu <span class="gradient-text">Evento</span></h2>
+      <p class="section-desc">Cuéntanos tu visión y te enviamos una propuesta completa con presupuesto detallado en menos de 24 horas.</p>
+    </div>
+    <div class="form-wrap sr">
+      <div class="form-grid">
+        <div class="form-group"><label class="ai-label">Nombre</label><input type="text" class="ai-input" placeholder="Tu nombre"></div>
+        <div class="form-group"><label class="ai-label">Empresa</label><input type="text" class="ai-input" placeholder="Tu empresa"></div>
+        <div class="form-group"><label class="ai-label">Email</label><input type="email" class="ai-input" placeholder="tu@email.com"></div>
+        <div class="form-group"><label class="ai-label">WhatsApp</label><input type="tel" class="ai-input" placeholder="+56 9 XXXX XXXX"></div>
+        <div class="form-group"><label class="ai-label">Tipo de Evento</label><input type="text" class="ai-input" placeholder="Lanzamiento, conferencia, gala..."></div>
+        <div class="form-group"><label class="ai-label">N° de Asistentes</label><input type="text" class="ai-input" placeholder="¿Cuántas personas?"></div>
+        <div class="form-group"><label class="ai-label">Fecha Tentativa</label><input type="text" class="ai-input" placeholder="¿Cuándo?"></div>
+        <div class="form-group"><label class="ai-label">Ciudad</label><input type="text" class="ai-input" placeholder="Santiago, Valparaíso..."></div>
+        <div class="form-group full"><label class="ai-label">Cuéntanos más sobre tu evento</label><textarea class="ai-input" rows="3" placeholder="Concepto, servicios que necesitas, presupuesto aproximado..."></textarea></div>
+        <div class="form-group full" style="margin-top:8px;"><button class="btn-gold" style="width:100%;padding:16px;">Quiero Mi Cotización de Evento →</button></div>
+      </div>
+      <p style="text-align:center;font-size:11px;color:rgba(255,255,255,0.3);margin-top:16px;">🔒 Respondemos en menos de 24 horas con propuesta detallada.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="ai-footer">
+  <span>© 2025 Amazing Ideas — Todos los derechos reservados</span>
+  <div style="display:flex;gap:24px;"><a href="servicios.html">Servicios</a><a href="index.html">Inicio</a><a href="#contacto">Contacto</a></div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script>
+(function(){const c=document.getElementById('particles-canvas'),ctx=c.getContext('2d');let W=window.innerWidth,H=window.innerHeight;c.width=W;c.height=H;const pts=[];for(let i=0;i<80;i++)pts.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.5+0.3,vx:(Math.random()-0.5)*0.3,vy:(Math.random()-0.5)*0.3,a:Math.random()});function draw(){ctx.clearRect(0,0,W,H);pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(255,215,0,${0.3+Math.sin(Date.now()*0.001+p.a)*0.2})`;ctx.fill();});requestAnimationFrame(draw);}draw();window.addEventListener('resize',()=>{W=window.innerWidth;H=window.innerHeight;c.width=W;c.height=H;});})();
+gsap.registerPlugin(ScrollTrigger);
+document.querySelectorAll('.sr').forEach(el=>{gsap.fromTo(el,{opacity:0,y:40},{opacity:1,y:0,duration:0.8,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none none'}});});
+</script>
+</body>
+</html>

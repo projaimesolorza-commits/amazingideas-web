@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Publicidad & Performance | Amazing Ideas</title>
+<link rel="stylesheet" href="ai-style.css">
+<style>
+.hero{min-height:100vh;display:flex;align-items:center;padding-top:80px;position:relative;overflow:hidden;}
+.hero-inner{max-width:1200px;margin:0 auto;padding:80px 40px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;z-index:2;}
+.hero-h1{font-size:clamp(2rem,4.5vw,3.6rem);font-weight:900;line-height:1.08;margin-bottom:24px;letter-spacing:-1px;}
+.hero-sub{color:rgba(255,255,255,0.65);font-size:16px;line-height:1.7;margin-bottom:36px;}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;}
+.ads-mockup{background:rgba(10,10,18,0.9);border:1px solid rgba(255,215,0,0.25);border-radius:16px;padding:24px;box-shadow:0 0 60px rgba(255,215,0,0.08);}
+.ads-header{font-family:'Orbitron',sans-serif;font-size:10px;color:var(--gold);letter-spacing:2px;margin-bottom:16px;}
+.ad-campaign{background:rgba(255,255,255,0.03);border:1px solid rgba(255,215,0,0.1);border-radius:8px;padding:14px;margin-bottom:10px;}
+.ad-cam-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.ad-cam-name{font-size:11px;font-weight:600;}
+.ad-cam-status{font-size:9px;color:#0f0;background:rgba(0,255,0,0.1);padding:2px 8px;border-radius:10px;}
+.ad-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.ad-metric{text-align:center;}
+.ad-metric-num{font-family:'Orbitron',sans-serif;font-size:12px;color:var(--gold);font-weight:900;}
+.ad-metric-lbl{font-size:8px;color:rgba(255,255,255,0.35);}
+.roas-box{background:linear-gradient(135deg,rgba(255,215,0,0.1),rgba(255,215,0,0.02));border:1px solid rgba(255,215,0,0.25);border-radius:8px;padding:16px;text-align:center;margin-top:12px;}
+.roas-num{font-family:'Orbitron',sans-serif;font-size:32px;font-weight:900;color:var(--gold);}
+.roas-label{font-size:9px;color:rgba(255,255,255,0.4);letter-spacing:2px;margin-top:4px;}
+.stats-inner{max-width:1200px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center;}
+.stat-label{font-size:12px;color:rgba(255,255,255,0.5);margin-top:6px;}
+.section{padding:100px 0;}
+.section-inner{max-width:1200px;margin:0 auto;padding:0 40px;}
+.section-header{text-align:center;margin-bottom:64px;}
+.section-title{font-size:clamp(1.6rem,3vw,2.6rem);font-weight:900;margin-bottom:16px;line-height:1.15;}
+.section-desc{color:rgba(255,255,255,0.6);font-size:16px;max-width:580px;margin:0 auto;line-height:1.7;}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.feat-card{padding:36px 28px;}
+.feat-title{font-family:'Orbitron',sans-serif;font-size:14px;font-weight:700;margin-bottom:12px;letter-spacing:0.5px;}
+.feat-desc{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.65;}
+.platforms-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px;}
+.platform-card{padding:20px;text-align:center;background:rgba(255,255,255,0.03);border:1px solid rgba(255,215,0,0.1);border-radius:8px;transition:all 0.3s;}
+.platform-card:hover{border-color:rgba(255,215,0,0.3);transform:translateY(-4px);}
+.platform-icon{font-size:24px;margin-bottom:8px;}
+.platform-name{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;color:var(--gold);letter-spacing:1px;}
+.platform-roas{font-size:11px;color:rgba(255,255,255,0.5);margin-top:4px;}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;}
+.process-grid::before{content:'';position:absolute;top:28px;left:12.5%;right:12.5%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,215,0,0.3),transparent);}
+.process-step{text-align:center;padding:0 16px;}
+.step-num{width:56px;height:56px;border-radius:50%;background:rgba(255,215,0,0.08);border:1px solid rgba(255,215,0,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-family:'Orbitron',sans-serif;font-size:18px;font-weight:900;color:var(--gold);}
+.step-title{font-family:'Orbitron',sans-serif;font-size:12px;font-weight:700;margin-bottom:8px;}
+.step-desc{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.6;}
+.case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.case-card{padding:28px;}
+.case-industry{font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
+.case-result{font-family:'Orbitron',sans-serif;font-size:2rem;font-weight:900;color:var(--gold);margin-bottom:8px;}
+.case-metric{font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:12px;}
+.case-desc{font-size:13px;color:rgba(255,255,255,0.7);line-height:1.6;}
+.form-wrap{background:rgba(10,10,18,0.6);border:1px solid rgba(255,215,0,0.18);border-radius:4px;padding:48px;max-width:560px;margin:0 auto;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.form-group{display:flex;flex-direction:column;}
+.form-group.full{grid-column:1/-1;}
+@media(max-width:768px){
+  .hero-inner{grid-template-columns:1fr;gap:40px;}
+  .feat-grid,.case-grid{grid-template-columns:1fr;}
+  .platforms-grid{grid-template-columns:1fr 1fr;}
+  .process-grid{grid-template-columns:1fr 1fr;gap:32px;}
+  .stats-inner{grid-template-columns:1fr 1fr;}
+  .form-grid{grid-template-columns:1fr;}
+  .process-grid::before{display:none;}
+}
+</style>
+</head>
+<body>
+<canvas id="particles-canvas"></canvas>
+
+<nav class="ai-nav">
+  <a href="index.html" class="nav-brand">
+    <img src="logo.png" alt="Amazing Ideas" class="nav-brand-logo" onerror="this.style.display='none'">
+    <span class="nav-brand-text">Amazing Ideas</span>
+  </a>
+  <ul class="nav-links-list">
+    <li><a href="servicios.html">Servicios</a></li>
+    <li><a href="automatizacion-ia.html">IA</a></li>
+    <li><a href="social-media.html">Social Media</a></li>
+    <li><a href="diseno-web.html">Web</a></li>
+    <li><a href="inmobiliaria.html">Inmobiliaria</a></li>
+  </ul>
+  <a href="#contacto" class="nav-cta-btn">Auditar Mis Ads</a>
+</nav>
+
+<section class="hero hero-grid">
+  <div class="hero-inner">
+    <div class="sr">
+      <div style="margin-bottom:24px;"><span class="badge-gold"><span class="badge-dot"></span>Publicidad · Media Buying · Performance</span></div>
+      <h1 class="hero-h1">Publicidad que<br><span class="gradient-text">Genera ROAS de 8x</span></h1>
+      <p class="hero-sub">Manejamos tu inversión publicitaria en Google, Meta, TikTok y más con estrategia IA, creatividades que convierten y optimización continua para maximizar cada peso invertido.</p>
+      <div class="hero-btns">
+        <a href="#contacto" class="btn-gold">Auditar Mis Campañas</a>
+        <a href="#plataformas" class="btn-ghost">Ver Plataformas</a>
+      </div>
+      <div style="margin-top:36px;display:flex;gap:32px;">
+        <div><div class="stat-num" style="font-size:1.6rem;">8x</div><div style="font-size:11px;color:rgba(255,255,255,0.45);">ROAS promedio</div></div>
+        <div><div class="stat-num" style="font-size:1.6rem;">-45%</div><div style="font-size:11px;color:rgba(255,255,255,0.45);">Costo por clic</div></div>
+        <div><div class="stat-num" style="font-size:1.6rem;">+210%</div><div style="font-size:11px;color:rgba(255,255,255,0.45);">Conversiones</div></div>
+      </div>
+    </div>
+    <div class="sr" style="animation-delay:0.2s">
+      <div class="ads-mockup float">
+        <div class="ads-header">PANEL DE CAMPAÑAS · LIVE</div>
+        <div class="ad-campaign">
+          <div class="ad-cam-header">
+            <span class="ad-cam-name">Google Search — Marca</span>
+            <span class="ad-cam-status">● ACTIVA</span>
+          </div>
+          <div class="ad-metrics">
+            <div class="ad-metric"><div class="ad-metric-num">4.2%</div><div class="ad-metric-lbl">CTR</div></div>
+            <div class="ad-metric"><div class="ad-metric-num">$890</div><div class="ad-metric-lbl">CPA</div></div>
+            <div class="ad-metric"><div class="ad-metric-num">12x</div><div class="ad-metric-lbl">ROAS</div></div>
+          </div>
+        </div>
+        <div class="ad-campaign">
+          <div class="ad-cam-header">
+            <span class="ad-cam-name">Meta Ads — Prospección</span>
+            <span class="ad-cam-status">● ACTIVA</span>
+          </div>
+          <div class="ad-metrics">
+            <div class="ad-metric"><div class="ad-metric-num">2.8%</div><div class="ad-metric-lbl">CTR</div></div>
+            <div class="ad-metric"><div class="ad-metric-num">$1,240</div><div class="ad-metric-lbl">CPA</div></div>
+            <div class="ad-metric"><div class="ad-metric-num">7x</div><div class="ad-metric-lbl">ROAS</div></div>
+          </div>
+        </div>
+        <div class="roas-box">
+          <div class="roas-num">8.4x</div>
+          <div class="roas-label">ROAS TOTAL DEL PORTAFOLIO</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="sr"><div class="stat-num">8x</div><div class="stat-label">ROAS promedio de clientes</div></div>
+    <div class="sr"><div class="stat-num">$50M+</div><div class="stat-label">Inversión publicitaria gestionada</div></div>
+    <div class="sr"><div class="stat-num">-45%</div><div class="stat-label">Reducción en CPC</div></div>
+    <div class="sr"><div class="stat-num">+210%</div><div class="stat-label">Más conversiones</div></div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-inner">
+    <div class="section-header sr">
+      <span class="section-label">Nuestros Servicios</span>
+      <h2 class="section-title">Performance Advertising <span class="gradient-text">con IA</span></h2>
+      <p class="section-desc">No solo activamos anuncios. Construimos máquinas de conversión: estrategia, creatividades, audiencias y optimización continua para el máximo ROAS.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="glass-card feat-card sr">
+        <div class="icon-box">
+          <svg width="22" height="22" fill="none" stroke="#FFD700" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </div>
+        <div class="feat-title">Google Ads & SEM</div>
+        <div class="feat-desc">Search, Display, Shopping, YouTube y Performance Max. Capturamos demanda con precisión quirúrgica en el momento exacto de intención de compra.</div>
+      </div>
+      <div class="glass-card feat-card sr">
+        <div class="icon-box">
+          <svg width="22" height="22" fill="none" stroke="#FFD700" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <div class="feat-title">Meta Ads (Facebook & Instagram)</div>
+        <div class="feat-desc">Campañas de prospección y retargeting con audiencias lookalike IA, creatividades A/B testing y optimización automática del presupuesto.</div>
+      </div>
+      <div class="glass-card feat-card sr">
+        <div class="icon-box">
+          <svg width="22" height="22" fill="none" stroke="#FFD700" stroke-width="2" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+        </div>
+        <div class="feat-title">TikTok & YouTube Ads</div>
+        <div class="feat-desc">Publicidad en video que viraliza: UGC-style, creatividades nativas y estrategia de contenido pagado que genera awareness y conversión simultánea.</div>
+      </div>
+      <div class="glass-card feat-card sr">
+        <div class="icon-box">
+          <svg width="22" height="22" fill="none" stroke="#FFD700" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        </div>
+        <div class="feat-title">Programática & Display</div>
+        <div class="feat-desc">Compra de medios programática en miles de sitios premium. Segmentación por comportamiento, contexto e intención para máximo alcance al menor CPM.</div>
+      </div>
+      <div class="glass-card feat-card sr">
+        <div class="icon-box">
+          <svg width="22" height="22" fill="none" stroke="#FFD700" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="feat-title">Retargeting & Remarketing</div>
+        <div class="feat-desc">Recuperamos visitantes que no convirtieron con secuencias de remarketing personalizadas por comportamiento, etapa del funnel y valor potencial.</div>
+      </div>
+      <div class="glass-card feat-card sr">
+        <div class="icon-box">
+          <svg width="22" height="22" fill="none" stroke="#FFD700" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <div class="feat-title">Reportería & Atribución</div>
+        <div class="feat-desc">Dashboard unificado con atribución multicanal real. Sabes exactamente qué canal, campaña y creatividad genera cada venta. Decisiones basadas en datos.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="plataformas" style="background:rgba(10,10,18,0.5);border-top:1px solid var(--gold-border);border-bottom:1px solid var(--gold-border);">
+  <div class="section-inner">
+    <div class="section-header sr">
+      <span class="section-label">Media Buying</span>
+      <h2 class="section-title">Dominamos <span class="gradient-text">Todas las Plataformas</span></h2>
+    </div>
+    <div class="platforms-grid sr">
+      <div class="platform-card"><div class="platform-icon">🔍</div><div class="platform-name">Google Ads</div><div class="platform-roas">ROAS Prom: 9x</div></div>
+      <div class="platform-card"><div class="platform-icon">📘</div><div class="platform-name">Meta Ads</div><div class="platform-roas">ROAS Prom: 7x</div></div>
+      <div class="platform-card"><div class="platform-icon">♪</div><div class="platform-name">TikTok Ads</div><div class="platform-roas">ROAS Prom: 6x</div></div>
+      <div class="platform-card"><div class="platform-icon">in</div><div class="platform-name">LinkedIn Ads</div><div class="platform-roas">CPL B2B óptimo</div></div>
+      <div class="platform-card"><div class="platform-icon">▶</div><div class="platform-name">YouTube Ads</div><div class="platform-roas">CPV: $0.02</div></div>
+      <div class="platform-card"><div class="platform-icon">📌</div><div class="platform-name">Pinterest Ads</div><div class="platform-roas">E-commerce ideal</div></div>
+      <div class="platform-card"><div class="platform-icon">🌐</div><div class="platform-name">Programática</div><div class="platform-roas">+50K sitios</div></div>
+      <div class="platform-card"><div class="platform-icon">📺</div><div class="platform-name">OTT / CTV</div><div class="platform-roas">TV Streaming</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-inner">
+    <div class="section-header sr">
+      <span class="section-label">Casos de Éxito</span>
+      <h2 class="section-title">ROAS que <span class="gradient-text">Hablan por Sí Solos</span></h2>
+    </div>
+    <div class="case-grid sr">
+      <div class="glass-card case-card">
+        <div class="case-industry">E-Commerce Moda</div>
+        <div class="case-result">12x</div>
+        <div class="case-metric">ROAS EN META ADS</div>
+        <div class="case-desc">Gestionamos $8M/mes en Meta Ads para tienda de moda. Creatividades UGC + audiencias IA generaron 12x ROAS en 60 días.</div>
+      </div>
+      <div class="glass-card case-card">
+        <div class="case-industry">Servicios B2B</div>
+        <div class="case-result">-52%</div>
+        <div class="case-metric">REDUCCIÓN EN CPA</div>
+        <div class="case-desc">Google Search para empresa SaaS. Reestructuración de cuentas + Smart Bidding IA redujo el costo por adquisición a la mitad en 45 días.</div>
+      </div>
+      <div class="glass-card case-card">
+        <div class="case-industry">Inmobiliaria</div>
+        <div class="case-result">+380%</div>
+        <div class="case-metric">LEADS CALIFICADOS</div>
+        <div class="case-desc">Estrategia multicanal Google + Meta + programática para proyecto inmobiliario. 380% más leads al mismo presupuesto en 3 meses.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:rgba(10,10,18,0.5);border-top:1px solid var(--gold-border);border-bottom:1px solid var(--gold-border);">
+  <div class="section-inner">
+    <div class="section-header sr">
+      <span class="section-label">Proceso</span>
+      <h2 class="section-title">Del Presupuesto al <span class="gradient-text">ROAS Máximo</span></h2>
+    </div>
+    <div class="process-grid sr">
+      <div class="process-step">
+        <div class="step-num">01</div>
+        <div class="step-title">Auditoría de Cuenta</div>
+        <div class="step-desc">Analizamos tus campañas actuales, estructura de cuenta, audiencias y creatividades. Identificamos errores y oportunidades inmediatas.</div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">02</div>
+        <div class="step-title">Estrategia & Setup</div>
+        <div class="step-desc">Diseñamos la arquitectura de campañas, segmentaciones y estrategia de pujas. Configuramos tracking y atribución correctamente.</div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">03</div>
+        <div class="step-title">Lanzamiento & Testing</div>
+        <div class="step-desc">Activamos campañas con A/B testing de creatividades y audiencias. Iteramos rápido para encontrar los ganadores.</div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">04</div>
+        <div class="step-title">Escala & Optimización</div>
+        <div class="step-desc">Escalamos lo que funciona y eliminamos lo que no. Optimización diaria con IA para mantener el ROAS mientras crece el presupuesto.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="urgency-banner sr">
+  <div style="max-width:800px;margin:0 auto;padding:0 40px;text-align:center;">
+    <span class="section-label" style="display:block;text-align:center;">Oferta Especial</span>
+    <h2 style="font-size:clamp(1.4rem,3vw,2.4rem);margin-bottom:16px;">Auditoría Gratuita de Tus Campañas <span class="gradient-text">+ 30 Días Sin Comisión</span></h2>
+    <p style="color:rgba(255,255,255,0.6);margin-bottom:32px;">Analizamos tu cuenta de Google Ads y Meta Ads gratis. Si identificamos mejoras, el primer mes de gestión no tiene comisión de agencia.</p>
+    <a href="#contacto" class="btn-gold">Quiero Mi Auditoría Gratuita</a>
+  </div>
+</div>
+
+<section class="cta-section section" id="contacto">
+  <div class="section-inner">
+    <div class="section-header sr">
+      <span class="section-label">Empecemos</span>
+      <h2 class="section-title">Maximiza Tu <span class="gradient-text">ROAS Ahora</span></h2>
+      <p class="section-desc">Cuéntanos tu situación actual y te decimos cómo mejorar tus resultados. Auditoría gratuita sin compromiso.</p>
+    </div>
+    <div class="form-wrap sr">
+      <div class="form-grid">
+        <div class="form-group"><label class="ai-label">Nombre</label><input type="text" class="ai-input" placeholder="Tu nombre"></div>
+        <div class="form-group"><label class="ai-label">Empresa</label><input type="text" class="ai-input" placeholder="Tu empresa"></div>
+        <div class="form-group"><label class="ai-label">Email</label><input type="email" class="ai-input" placeholder="tu@email.com"></div>
+        <div class="form-group"><label class="ai-label">WhatsApp</label><input type="tel" class="ai-input" placeholder="+56 9 XXXX XXXX"></div>
+        <div class="form-group"><label class="ai-label">Presupuesto mensual en ads</label><input type="text" class="ai-input" placeholder="$500K, $2M, $10M..."></div>
+        <div class="form-group"><label class="ai-label">Plataformas actuales</label><input type="text" class="ai-input" placeholder="Google, Meta, TikTok..."></div>
+        <div class="form-group full"><label class="ai-label">¿Cuál es tu ROAS actual y objetivo?</label><textarea class="ai-input" rows="3" placeholder="Cuéntanos tu situación actual, resultados y qué quieres mejorar..."></textarea></div>
+        <div class="form-group full" style="margin-top:8px;"><button class="btn-gold" style="width:100%;padding:16px;">Quiero Mi Auditoría Gratuita →</button></div>
+      </div>
+      <p style="text-align:center;font-size:11px;color:rgba(255,255,255,0.3);margin-top:16px;">🔒 Respondemos en menos de 2 horas con análisis inicial.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="ai-footer">
+  <span>© 2025 Amazing Ideas — Todos los derechos reservados</span>
+  <div style="display:flex;gap:24px;"><a href="servicios.html">Servicios</a><a href="index.html">Inicio</a><a href="#contacto">Contacto</a></div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script>
+(function(){const c=document.getElementById('particles-canvas'),ctx=c.getContext('2d');let W=window.innerWidth,H=window.innerHeight;c.width=W;c.height=H;const pts=[];for(let i=0;i<80;i++)pts.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.5+0.3,vx:(Math.random()-0.5)*0.3,vy:(Math.random()-0.5)*0.3,a:Math.random()});function draw(){ctx.clearRect(0,0,W,H);pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(255,215,0,${0.3+Math.sin(Date.now()*0.001+p.a)*0.2})`;ctx.fill();});requestAnimationFrame(draw);}draw();window.addEventListener('resize',()=>{W=window.innerWidth;H=window.innerHeight;c.width=W;c.height=H;});})();
+gsap.registerPlugin(ScrollTrigger);
+document.querySelectorAll('.sr').forEach(el=>{gsap.fromTo(el,{opacity:0,y:40},{opacity:1,y:0,duration:0.8,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none none'}});});
+</script>
+</body>
+</html>
