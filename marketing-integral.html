@@ -86,7 +86,7 @@
 <section class="hero hero-grid">
   <div class="hero-inner">
     <div class="sr">
-      <div style="margin-bottom:24px;"><span class="badge-gold"><span class="badge-dot"></span>Marketing Integral</span></div>
+      <div style="margin-bottom:24px;"><span class="badge-gold"><span class="badge-dot"></span>Estrategia de Marketing</span></div>
       <h1 class="hero-h1">Marketing que<br><span class="gradient-text">Multiplica Ventas</span></h1>
       <p class="hero-sub">Estrategia de marketing 360° potenciada por IA: SEO, email, content, inbound y performance. Un ecosistema de crecimiento que trabaja para tu negocio las 24 horas.</p>
       <div class="hero-btns">
@@ -100,7 +100,25 @@
       </div>
     </div>
     <div class="sr" style="animation-delay:0.2s">
-      <div class="funnel-mockup float">
+      <div class="float" style="border-radius:16px;overflow:hidden;border:1px solid rgba(255,215,0,0.22);box-shadow:0 0 70px rgba(255,215,0,0.12);position:relative;margin-bottom:0;">
+        <video id="hero-vid-mkt" src="ESTRATEGIA%20DE%20MARKETING.mp4" muted playsinline loop style="width:100%;min-height:400px;max-height:520px;object-fit:cover;display:block;"></video>
+        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(0,0,0,0.5));pointer-events:none;"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;display:flex;gap:10px;">
+          <div style="background:rgba(255,215,0,0.12);border:1px solid rgba(255,215,0,0.3);border-radius:8px;padding:10px 14px;flex:1;text-align:center;">
+            <div style="font-family:'Orbitron',sans-serif;font-size:13px;font-weight:900;color:#FFD700;">8x</div>
+            <div style="font-size:9px;color:rgba(255,255,255,0.6);margin-top:2px;">ROI</div>
+          </div>
+          <div style="background:rgba(255,215,0,0.12);border:1px solid rgba(255,215,0,0.3);border-radius:8px;padding:10px 14px;flex:1;text-align:center;">
+            <div style="font-family:'Orbitron',sans-serif;font-size:13px;font-weight:900;color:#FFD700;">+320%</div>
+            <div style="font-size:9px;color:rgba(255,255,255,0.6);margin-top:2px;">Leads</div>
+          </div>
+          <div style="background:rgba(255,215,0,0.12);border:1px solid rgba(255,215,0,0.3);border-radius:8px;padding:10px 14px;flex:1;text-align:center;">
+            <div style="font-family:'Orbitron',sans-serif;font-size:13px;font-weight:900;color:#FFD700;">-40%</div>
+            <div style="font-size:9px;color:rgba(255,255,255,0.6);margin-top:2px;">CPA</div>
+          </div>
+        </div>
+      </div>
+      <div class="funnel-mockup float" style="display:none;">
         <div class="funnel-title">FUNNEL DE CRECIMIENTO</div>
         <div class="funnel-bar-row">
           <div class="funnel-bar-label"><span>Visitantes Web</span><span style="color:var(--gold)">+340%</span></div>
@@ -308,6 +326,18 @@
 (function(){const c=document.getElementById('particles-canvas'),ctx=c.getContext('2d');let W=window.innerWidth,H=window.innerHeight;c.width=W;c.height=H;const pts=[];for(let i=0;i<80;i++)pts.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.5+0.3,vx:(Math.random()-0.5)*0.3,vy:(Math.random()-0.5)*0.3,a:Math.random()});function draw(){ctx.clearRect(0,0,W,H);pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(255,215,0,${0.3+Math.sin(Date.now()*0.001+p.a)*0.2})`;ctx.fill();});requestAnimationFrame(draw);}draw();window.addEventListener('resize',()=>{W=window.innerWidth;H=window.innerHeight;c.width=W;c.height=H;});})();
 gsap.registerPlugin(ScrollTrigger);
 document.querySelectorAll('.sr').forEach(el=>{gsap.fromTo(el,{opacity:0,y:40},{opacity:1,y:0,duration:0.8,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none none'}});});
+(function(){
+  var v=document.getElementById('hero-vid-mkt');
+  if(!v)return;
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)v.play();else v.pause();});},{threshold:0.1});
+  io.observe(v);
+  window.addEventListener('scroll',function(){
+    if(!v.duration)return;
+    var r=v.getBoundingClientRect();
+    var pct=Math.max(0,Math.min(1,(-r.top)/(window.innerHeight)));
+    v.currentTime=pct*v.duration;
+  });
+})();
 </script>
 </body>
 </html>

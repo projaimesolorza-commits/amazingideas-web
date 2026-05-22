@@ -124,8 +124,27 @@
         </div>
       </div>
 
-      <!-- Dashboard -->
-      <div id="hv" class="float">
+      <!-- Hero Video -->
+      <div id="hero-vid-wrap" style="border-radius:16px;overflow:hidden;border:1px solid rgba(255,215,0,0.22);box-shadow:0 0 70px rgba(255,215,0,0.12);position:relative;">
+        <video id="hero-vid" src="AUTOMATIZACION%20%26%20IA.mp4" muted playsinline loop style="width:100%;min-height:400px;max-height:520px;object-fit:cover;display:block;"></video>
+        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(0,0,0,0.5));pointer-events:none;"></div>
+        <div style="position:absolute;bottom:20px;left:20px;right:20px;display:flex;gap:10px;">
+          <div style="background:rgba(255,215,0,0.12);border:1px solid rgba(255,215,0,0.3);border-radius:8px;padding:10px 14px;flex:1;text-align:center;">
+            <div style="font-family:'Orbitron',sans-serif;font-size:13px;font-weight:900;color:#FFD700;">24/7</div>
+            <div style="font-size:9px;color:rgba(255,255,255,0.6);margin-top:2px;">Operativo</div>
+          </div>
+          <div style="background:rgba(255,215,0,0.12);border:1px solid rgba(255,215,0,0.3);border-radius:8px;padding:10px 14px;flex:1;text-align:center;">
+            <div style="font-family:'Orbitron',sans-serif;font-size:13px;font-weight:900;color:#FFD700;">3s</div>
+            <div style="font-size:9px;color:rgba(255,255,255,0.6);margin-top:2px;">Respuesta</div>
+          </div>
+          <div style="background:rgba(255,215,0,0.12);border:1px solid rgba(255,215,0,0.3);border-radius:8px;padding:10px 14px;flex:1;text-align:center;">
+            <div style="font-family:'Orbitron',sans-serif;font-size:13px;font-weight:900;color:#FFD700;">80%</div>
+            <div style="font-size:9px;color:rgba(255,255,255,0.6);margin-top:2px;">Ahorro</div>
+          </div>
+        </div>
+      </div>
+      <!-- Dashboard (hidden) -->
+      <div id="hv" class="float" style="display:none;">
         <div class="dash">
           <div class="dash-header">
             <span class="dash-label">Panel IA — Tiempo Real</span>
@@ -347,7 +366,20 @@
 <script>
 gsap.registerPlugin(ScrollTrigger);
 gsap.from('#ht', { opacity:0, x:-60, duration:1, ease:'power3.out' });
-gsap.from('#hv', { opacity:0, x:60, duration:1, ease:'power3.out', delay:0.2 });
+gsap.from('#hero-vid-wrap', { opacity:0, x:60, duration:1, ease:'power3.out', delay:0.2 });
+(function(){
+  var v=document.getElementById('hero-vid');
+  if(!v)return;
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)v.play();else v.pause();});},{threshold:0.1});
+  io.observe(v);
+  window.addEventListener('scroll',function(){
+    if(!v.duration)return;
+    var wrap=document.getElementById('hero-vid-wrap');
+    var r=wrap.getBoundingClientRect();
+    var pct=Math.max(0,Math.min(1,(-r.top)/(window.innerHeight)));
+    v.currentTime=pct*v.duration;
+  });
+})();
 gsap.utils.toArray('.sr').forEach(el => {
   gsap.to(el, { opacity:1, y:0, duration:0.8, ease:'power2.out',
     scrollTrigger:{ trigger:el, start:'top 88%' }
