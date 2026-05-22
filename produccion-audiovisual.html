@@ -87,7 +87,7 @@
 
 <section class="hero hero-grid" style="position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;z-index:0;">
-    <img src="Gemini_Generated_Image_ny6txzny6txzny6t.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center;">
+    <video id="hero-vid-audiovisual" src="Character_uses_power_202604271652.mp4" muted playsinline loop style="width:100%;height:100%;object-fit:cover;"></video>
     <div style="position:absolute;inset:0;background:linear-gradient(110deg,rgba(5,5,8,0.96) 0%,rgba(5,5,8,0.82) 50%,rgba(5,5,8,0.45) 100%);"></div>
   </div>
   <div class="hero-inner" style="grid-template-columns:1fr;max-width:780px;position:relative;z-index:2;">
@@ -388,6 +388,7 @@
 (function(){const c=document.getElementById('particles-canvas'),ctx=c.getContext('2d');let W=window.innerWidth,H=window.innerHeight;c.width=W;c.height=H;const pts=[];for(let i=0;i<80;i++)pts.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.5+0.3,vx:(Math.random()-0.5)*0.3,vy:(Math.random()-0.5)*0.3,a:Math.random()});function draw(){ctx.clearRect(0,0,W,H);pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(255,215,0,${0.3+Math.sin(Date.now()*0.001+p.a)*0.2})`;ctx.fill();});requestAnimationFrame(draw);}draw();window.addEventListener('resize',()=>{W=window.innerWidth;H=window.innerHeight;c.width=W;c.height=H;});})();
 gsap.registerPlugin(ScrollTrigger);
 document.querySelectorAll('.sr').forEach(el=>{gsap.fromTo(el,{opacity:0,y:40},{opacity:1,y:0,duration:0.8,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none none'}});});
+(function(){const vid=document.getElementById('hero-vid-audiovisual');if(!vid)return;const hero=document.querySelector('.hero.hero-grid');new IntersectionObserver(entries=>{entries[0].isIntersecting?vid.play():vid.pause();},{threshold:0.1}).observe(hero);vid.play();window.addEventListener('scroll',function(){const r=hero.getBoundingClientRect();const total=r.height+window.innerHeight;const prog=Math.min(Math.max((-r.top)/total,0),1);if(vid.duration)vid.currentTime=prog*vid.duration;},{passive:true});})();
 </script>
 </body>
 </html>
