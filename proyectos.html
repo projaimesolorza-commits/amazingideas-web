@@ -3,497 +3,590 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Proyectos | Amazing Ideas</title>
+<title>Proyectos que Impactan | Amazing Ideas</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  --bg:#05050a;
-  --purple:#8B5CF6;
-  --purple-bright:#A78BFA;
-  --purple-deep:#6D28D9;
-  --violet:#7C3AED;
-  --neon:#C4B5FD;
+  --bg:#06050f;
+  --p1:#7C3AED;--p2:#8B5CF6;--p3:#A78BFA;--p4:#C4B5FD;
+  --neon-glow:rgba(139,92,246,0.55);
+  --card-bg:rgba(12,9,25,0.92);
+  --border:rgba(167,139,250,0.18);
   --gold:#FFD700;
-  --glass:rgba(139,92,246,0.08);
-  --glass-border:rgba(167,139,250,0.2);
 }
-html,body{height:100%;background:var(--bg);color:#fff;font-family:'Inter',sans-serif;overflow-x:hidden;}
+html,body{min-height:100%;background:var(--bg);color:#fff;font-family:'Inter',sans-serif;overflow-x:hidden;}
 
-/* ─── PARTICLES ─── */
-#particles{position:fixed;inset:0;z-index:0;pointer-events:none;}
+/* ── CANVAS PARTICLES ── */
+#cvs{position:fixed;inset:0;z-index:0;pointer-events:none;}
 
-/* ─── LOGIN SCREEN ─── */
-#login-screen{
-  position:fixed;inset:0;z-index:100;
-  background:radial-gradient(ellipse at 50% 40%,rgba(109,40,217,0.18) 0%,#05050a 70%);
+/* ── AMBIENT BLOBS ── */
+.blob{position:fixed;border-radius:50%;filter:blur(140px);pointer-events:none;z-index:0;}
+.b1{width:700px;height:700px;background:rgba(109,40,217,0.14);top:-200px;right:-180px;}
+.b2{width:600px;height:600px;background:rgba(76,29,149,0.12);bottom:-200px;left:-180px;}
+.b3{width:350px;height:350px;background:rgba(139,92,246,0.07);top:45%;left:45%;transform:translate(-50%,-50%);}
+
+/* ══════════════════════════════════════
+   LOGIN
+══════════════════════════════════════ */
+#lg{
+  position:fixed;inset:0;z-index:200;
   display:flex;align-items:center;justify-content:center;
-  backdrop-filter:blur(0px);
+  background:radial-gradient(ellipse at 50% 35%,rgba(109,40,217,0.22) 0%,#06050f 68%);
 }
-.login-box{
-  background:rgba(10,8,20,0.95);
-  border:1px solid rgba(167,139,250,0.35);
-  border-radius:24px;
-  padding:56px 48px;
-  width:100%;max-width:420px;
-  box-shadow:0 0 80px rgba(139,92,246,0.25),0 0 200px rgba(109,40,217,0.12),inset 0 1px 0 rgba(255,255,255,0.05);
+.lbox{
+  width:100%;max-width:400px;
+  background:rgba(10,7,22,0.97);
+  border:1px solid rgba(167,139,250,0.28);
+  border-radius:28px;padding:52px 44px;
+  box-shadow:0 0 100px rgba(139,92,246,0.2),0 0 300px rgba(109,40,217,0.08),inset 0 1px 0 rgba(255,255,255,0.04);
+  animation:popIn .55s cubic-bezier(.175,.885,.32,1.275) both;
   position:relative;overflow:hidden;
-  animation:fadeInUp 0.6s ease both;
 }
-.login-box::before{
-  content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);
-  width:200px;height:200px;
-  background:radial-gradient(circle,rgba(139,92,246,0.3) 0%,transparent 70%);
+.lbox::before{
+  content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);
+  width:240px;height:180px;
+  background:radial-gradient(ellipse,rgba(139,92,246,0.28) 0%,transparent 70%);
   pointer-events:none;
 }
-.login-logo{text-align:center;margin-bottom:32px;}
-.login-logo img{height:52px;filter:brightness(0) invert(1) drop-shadow(0 0 16px rgba(167,139,250,0.8));}
-.login-title{
-  font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;
-  letter-spacing:4px;text-transform:uppercase;
-  color:var(--purple-bright);text-align:center;margin-bottom:36px;opacity:0.8;
+@keyframes popIn{from{opacity:0;transform:translateY(28px) scale(.96);}to{opacity:1;transform:none;}}
+
+.llogo{text-align:center;margin-bottom:10px;}
+.llogo svg{filter:drop-shadow(0 0 18px rgba(167,139,250,0.7));}
+.lbadge{
+  text-align:center;font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;
+  letter-spacing:4px;color:rgba(167,139,250,0.55);margin-bottom:36px;
+  text-transform:uppercase;
 }
-.login-field{margin-bottom:18px;}
-.login-field label{display:block;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(167,139,250,0.6);margin-bottom:8px;}
-.login-field input{
-  width:100%;background:rgba(139,92,246,0.06);
-  border:1px solid rgba(167,139,250,0.2);border-radius:10px;
-  padding:14px 16px;color:#fff;font-family:'Inter',sans-serif;font-size:14px;
-  outline:none;transition:all 0.3s;
+.lfield{margin-bottom:16px;}
+.lfield label{display:block;font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(167,139,250,0.5);margin-bottom:8px;}
+.lfield input{
+  width:100%;background:rgba(139,92,246,0.05);
+  border:1px solid rgba(167,139,250,0.16);border-radius:12px;
+  padding:13px 16px;color:#fff;font-family:'Inter',sans-serif;font-size:14px;outline:none;
+  transition:border-color .25s,box-shadow .25s;
 }
-.login-field input:focus{border-color:var(--purple-bright);box-shadow:0 0 0 3px rgba(139,92,246,0.15);}
-.login-field input::placeholder{color:rgba(255,255,255,0.2);}
-.login-btn{
-  width:100%;margin-top:8px;
-  padding:16px;border:none;border-radius:12px;cursor:pointer;
-  background:linear-gradient(135deg,var(--violet),var(--purple-deep));
-  color:#fff;font-family:'Orbitron',sans-serif;font-size:12px;font-weight:700;
-  letter-spacing:2px;text-transform:uppercase;
-  box-shadow:0 0 30px rgba(139,92,246,0.4),0 4px 24px rgba(0,0,0,0.4);
-  transition:all 0.3s;position:relative;overflow:hidden;
+.lfield input:focus{border-color:var(--p3);box-shadow:0 0 0 3px rgba(139,92,246,0.12);}
+.lfield input::placeholder{color:rgba(255,255,255,0.18);}
+.lbtn{
+  width:100%;margin-top:10px;padding:15px;border:none;border-radius:14px;cursor:pointer;
+  background:linear-gradient(135deg,var(--p1) 0%,#5B21B6 100%);
+  color:#fff;font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;letter-spacing:2.5px;
+  box-shadow:0 0 35px rgba(139,92,246,0.45),0 4px 20px rgba(0,0,0,0.5);
+  transition:all .3s;position:relative;overflow:hidden;
 }
-.login-btn::before{
-  content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.1),transparent);
-  transition:left 0.5s;
+.lbtn::after{
+  content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.12),transparent);
+  animation:shimmer 2.5s infinite;
 }
-.login-btn:hover::before{left:100%;}
-.login-btn:hover{box-shadow:0 0 50px rgba(139,92,246,0.6),0 4px 30px rgba(0,0,0,0.5);transform:translateY(-1px);}
-.login-error{
-  text-align:center;font-size:12px;color:#F87171;margin-top:14px;
-  padding:10px;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:8px;
+@keyframes shimmer{0%{left:-100%;}100%{left:200%;}}
+.lbtn:hover{transform:translateY(-2px);box-shadow:0 0 60px rgba(139,92,246,0.65),0 6px 28px rgba(0,0,0,0.6);}
+.lerr{
+  text-align:center;font-size:12px;color:#F87171;margin-top:12px;
+  padding:9px;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.18);border-radius:8px;
   display:none;
 }
-.login-hint{text-align:center;margin-top:20px;font-size:10px;color:rgba(255,255,255,0.18);letter-spacing:1px;}
+.lhint{text-align:center;margin-top:18px;font-size:9px;color:rgba(255,255,255,0.15);letter-spacing:1.5px;}
 
-/* ─── MAIN PAGE ─── */
-#main-page{display:none;position:relative;z-index:1;min-height:100vh;}
+/* ══════════════════════════════════════
+   MAIN
+══════════════════════════════════════ */
+#app{display:none;position:relative;z-index:1;}
 
-/* ─── HEADER ─── */
-.page-header{
-  text-align:center;padding:80px 40px 60px;
-  position:relative;
+/* logout */
+.logout{
+  position:fixed;top:20px;right:24px;z-index:50;
+  font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:rgba(167,139,250,0.45);background:rgba(139,92,246,0.07);
+  border:1px solid rgba(167,139,250,0.14);border-radius:100px;padding:8px 18px;
+  cursor:pointer;transition:all .3s;text-decoration:none;
 }
-.page-header::before{
-  content:'AMAZING IDEAS';
-  position:absolute;top:40px;left:50%;transform:translateX(-50%);
-  font-family:'Orbitron',sans-serif;font-size:clamp(60px,10vw,120px);font-weight:900;
-  color:rgba(139,92,246,0.04);letter-spacing:12px;white-space:nowrap;pointer-events:none;
-  user-select:none;
+.logout:hover{color:var(--p3);border-color:rgba(167,139,250,0.35);background:rgba(139,92,246,0.14);}
+
+/* ── HERO HEADER ── */
+.hero{text-align:center;padding:90px 40px 64px;position:relative;}
+.hero::before{
+  content:'PROYECTOS';
+  position:absolute;top:50px;left:50%;transform:translateX(-50%);
+  font-family:'Orbitron',sans-serif;font-size:clamp(56px,9vw,130px);font-weight:900;
+  color:rgba(139,92,246,0.035);letter-spacing:16px;white-space:nowrap;pointer-events:none;user-select:none;
 }
 .eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:4px;
-  text-transform:uppercase;color:var(--purple-bright);margin-bottom:20px;
-  background:rgba(139,92,246,0.1);border:1px solid rgba(167,139,250,0.25);
-  border-radius:100px;padding:6px 16px;
+  display:inline-flex;align-items:center;gap:8px;margin-bottom:22px;
+  font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;
+  color:var(--p3);background:rgba(139,92,246,0.09);border:1px solid rgba(167,139,250,0.22);
+  border-radius:100px;padding:6px 18px;
 }
-.eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--purple-bright);animation:pulse-dot 2s infinite;}
-@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.8);}}
-.page-title{
-  font-family:'Orbitron',sans-serif;
-  font-size:clamp(2.4rem,5vw,4.8rem);font-weight:900;line-height:1.05;
-  letter-spacing:-1px;margin-bottom:20px;
+.edot{width:6px;height:6px;border-radius:50%;background:var(--p3);animation:edot 2.2s ease-in-out infinite;}
+@keyframes edot{0%,100%{opacity:1;}50%{opacity:.3;}}
+h1.title{
+  font-family:'Orbitron',sans-serif;font-size:clamp(2.4rem,5.5vw,5rem);font-weight:900;
+  line-height:1.04;letter-spacing:-2px;margin-bottom:18px;
 }
-.page-title .line-purple{
-  display:block;
-  background:linear-gradient(135deg,#C4B5FD 0%,#8B5CF6 50%,#6D28D9 100%);
+h1.title .grd{
+  background:linear-gradient(135deg,var(--p4) 0%,var(--p2) 45%,var(--p1) 100%);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  filter:drop-shadow(0 0 30px rgba(139,92,246,0.5));
+  filter:drop-shadow(0 0 32px rgba(139,92,246,0.55));
 }
-.page-subtitle{color:rgba(255,255,255,0.5);font-size:15px;max-width:480px;margin:0 auto;line-height:1.7;}
+.subtitle{color:rgba(255,255,255,0.45);font-size:15px;max-width:500px;margin:0 auto;line-height:1.72;}
+.divider{width:100px;height:1px;margin:40px auto;background:linear-gradient(90deg,transparent,rgba(139,92,246,0.55),transparent);}
 
-/* ─── DIVIDER ─── */
-.divider{
-  width:120px;height:1px;margin:40px auto;
-  background:linear-gradient(90deg,transparent,rgba(139,92,246,0.6),transparent);
+/* ── COUNTER BAR ── */
+.counter-bar{
+  max-width:900px;margin:0 auto 64px;padding:0 40px;
+  display:flex;gap:0;justify-content:center;
 }
+.ctr-item{flex:1;text-align:center;padding:20px 10px;position:relative;}
+.ctr-item::after{content:'';position:absolute;right:0;top:20%;height:60%;width:1px;background:rgba(167,139,250,0.1);}
+.ctr-item:last-child::after{display:none;}
+.ctr-num{font-family:'Orbitron',sans-serif;font-size:2rem;font-weight:900;color:var(--p3);line-height:1;}
+.ctr-lbl{font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:2px;text-transform:uppercase;margin-top:6px;}
 
-/* ─── GRID ─── */
-.projects-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
-  gap:32px;max-width:1280px;margin:0 auto;padding:0 40px 100px;
+/* ── GRID ── */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:28px;max-width:1320px;margin:0 auto;padding:0 40px 120px;
 }
+/* featured first two cards span differently */
+.grid .card:nth-child(1){ grid-column:span 2; }
+.grid .card:nth-child(2){ grid-column:span 1; }
 
-/* ─── PROJECT CARD ─── */
-.proj-card{
-  position:relative;border-radius:24px;overflow:hidden;cursor:pointer;
-  background:rgba(10,8,20,0.9);
-  border:1px solid var(--glass-border);
-  box-shadow:0 0 40px rgba(109,40,217,0.08);
-  transition:all 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
-  text-decoration:none;color:inherit;display:block;
+/* ── CARD ── */
+.card{
+  display:block;text-decoration:none;color:inherit;
+  background:var(--card-bg);border:1px solid var(--border);border-radius:22px;overflow:hidden;
+  position:relative;cursor:pointer;
+  box-shadow:0 2px 40px rgba(109,40,217,0.06);
+  transition:transform .4s cubic-bezier(.175,.885,.32,1.275),box-shadow .4s,border-color .4s;
+  animation:cardIn .6s ease both;
 }
-.proj-card::before{
+.card:nth-child(1){animation-delay:.08s;}
+.card:nth-child(2){animation-delay:.16s;}
+.card:nth-child(3){animation-delay:.24s;}
+.card:nth-child(4){animation-delay:.32s;}
+.card:nth-child(5){animation-delay:.4s;}
+@keyframes cardIn{from{opacity:0;transform:translateY(32px);}to{opacity:1;transform:none;}}
+.card::before{
   content:'';position:absolute;inset:0;
-  background:linear-gradient(135deg,rgba(139,92,246,0.12) 0%,rgba(109,40,217,0.04) 50%,rgba(124,58,237,0.08) 100%);
-  opacity:0;transition:opacity 0.4s;z-index:1;
+  background:linear-gradient(135deg,rgba(139,92,246,.1) 0%,transparent 60%);
+  opacity:0;transition:opacity .4s;z-index:1;
 }
-.proj-card:hover{
-  transform:translateY(-10px) scale(1.01);
-  border-color:rgba(167,139,250,0.5);
-  box-shadow:0 20px 80px rgba(109,40,217,0.3),0 0 60px rgba(139,92,246,0.15),0 0 0 1px rgba(167,139,250,0.3);
+.card:hover{
+  transform:translateY(-10px) scale(1.012);
+  border-color:rgba(167,139,250,.48);
+  box-shadow:0 24px 80px rgba(109,40,217,.32),0 0 60px rgba(139,92,246,.14),0 0 0 1px rgba(167,139,250,.28);
 }
-.proj-card:hover::before{opacity:1;}
-
-/* card top glow bar */
-.proj-card::after{
+.card:hover::before{opacity:1;}
+/* top accent line */
+.card::after{
   content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,transparent,var(--purple-bright),transparent);
-  opacity:0;transition:opacity 0.4s;
+  background:linear-gradient(90deg,transparent,var(--p3),transparent);
+  opacity:0;transition:opacity .4s;z-index:2;
 }
-.proj-card:hover::after{opacity:1;}
+.card:hover::after{opacity:1;}
 
-/* preview window */
-.proj-preview{
-  position:relative;height:220px;overflow:hidden;
-  background:linear-gradient(135deg,#0d0b1a 0%,#110e22 100%);
+/* preview */
+.preview{
+  position:relative;overflow:hidden;background:#080615;
+  height:200px;
 }
-.proj-iframe-wrap{
-  position:absolute;inset:0;
-  transform-origin:top left;
-}
-.proj-iframe-wrap iframe{
-  width:1280px;height:800px;border:none;
-  transform:scale(0.265);transform-origin:top left;
-  pointer-events:none;
-}
-.proj-preview-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(to bottom,transparent 60%,rgba(10,8,20,0.95) 100%);
-  z-index:2;
-}
-/* fallback mockup when iframe blocked */
-.proj-preview-mockup{
+.card:nth-child(1) .preview{height:240px;}
+.card:nth-child(2) .preview{height:240px;}
+
+.preview-inner{
   position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(135deg,#0d0b1a 0%,#1a1035 50%,#0d0b1a 100%);
 }
-.mockup-screen{
-  width:200px;height:130px;border-radius:8px;
-  border:1px solid rgba(167,139,250,0.25);
-  background:rgba(139,92,246,0.05);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
-  position:relative;overflow:hidden;
+.preview-overlay{
+  position:absolute;inset:0;z-index:2;
+  background:linear-gradient(to bottom,rgba(8,6,21,.1) 30%,rgba(8,6,21,.95) 100%);
 }
-.mockup-screen::before{
-  content:'';position:absolute;top:-40px;left:50%;transform:translateX(-50%);
-  width:120px;height:80px;
-  background:radial-gradient(ellipse,rgba(139,92,246,0.3) 0%,transparent 70%);
-}
-.mockup-bar{width:60%;height:3px;border-radius:2px;background:linear-gradient(90deg,var(--purple-deep),var(--purple-bright));}
-.mockup-line{width:80%;height:2px;border-radius:1px;background:rgba(255,255,255,0.08);}
-.mockup-line.short{width:50%;}
-.mockup-dot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:4px;}
-.mockup-dot{width:28px;height:20px;border-radius:4px;background:rgba(139,92,246,0.12);border:1px solid rgba(139,92,246,0.2);}
 
-/* status badge */
-.proj-status{
+/* status */
+.status{
   position:absolute;top:14px;right:14px;z-index:3;
-  font-family:'Orbitron',sans-serif;font-size:8px;font-weight:700;letter-spacing:2px;
-  padding:4px 10px;border-radius:100px;text-transform:uppercase;
+  font-family:'Orbitron',sans-serif;font-size:7.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  padding:4px 11px;border-radius:100px;
 }
-.status-live{background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.4);color:#34D399;}
-.status-soon{background:rgba(139,92,246,0.15);border:1px solid rgba(139,92,246,0.4);color:var(--purple-bright);}
+.live{background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.38);color:#34D399;}
+.admin{background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.3);color:#FCD34D;}
 
-/* card body */
-.proj-body{padding:28px;position:relative;z-index:2;}
-.proj-tag{
-  display:inline-block;font-size:9px;font-weight:700;letter-spacing:2px;
-  text-transform:uppercase;color:var(--purple-bright);
-  background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.25);
-  border-radius:6px;padding:3px 10px;margin-bottom:14px;
+/* body */
+.cbody{padding:26px 28px 28px;position:relative;z-index:2;}
+.tag{
+  display:inline-block;font-size:8.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--p3);background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.22);
+  border-radius:6px;padding:3px 10px;margin-bottom:13px;
 }
-.proj-name{
-  font-family:'Orbitron',sans-serif;font-size:1.35rem;font-weight:900;
-  margin-bottom:10px;letter-spacing:-0.5px;color:#fff;
-  text-shadow:0 0 20px rgba(167,139,250,0.2);
+.cname{
+  font-family:'Orbitron',sans-serif;font-size:1.25rem;font-weight:900;
+  margin-bottom:9px;letter-spacing:-.5px;color:#fff;
+  text-shadow:0 0 24px rgba(167,139,250,.18);
 }
-.proj-desc{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.65;margin-bottom:20px;}
-.proj-footer-row{display:flex;align-items:center;justify-content:space-between;}
-.proj-url{font-size:10px;color:rgba(167,139,250,0.5);font-family:'Orbitron',sans-serif;letter-spacing:0.5px;}
-.proj-arrow{
-  width:36px;height:36px;border-radius:10px;
-  background:linear-gradient(135deg,var(--violet),var(--purple-deep));
+.card:nth-child(1) .cname,.card:nth-child(2) .cname{font-size:1.45rem;}
+.cdesc{font-size:12.5px;color:rgba(255,255,255,.45);line-height:1.7;margin-bottom:20px;}
+.cfoot{display:flex;align-items:center;justify-content:space-between;}
+.curl{font-size:9px;color:rgba(167,139,250,.4);font-family:'Orbitron',sans-serif;letter-spacing:.5px;word-break:break-all;}
+.arrow{
+  flex-shrink:0;width:36px;height:36px;border-radius:10px;
+  background:linear-gradient(135deg,var(--p1),#4C1D95);
   display:flex;align-items:center;justify-content:center;
-  box-shadow:0 0 20px rgba(139,92,246,0.4);
-  transition:all 0.3s;flex-shrink:0;
+  box-shadow:0 0 22px rgba(139,92,246,.4);transition:all .3s;
 }
-.proj-card:hover .proj-arrow{transform:translateX(3px);box-shadow:0 0 30px rgba(139,92,246,0.7);}
-.proj-arrow svg{width:16px;height:16px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.card:hover .arrow{transform:translateX(3px);box-shadow:0 0 36px rgba(139,92,246,.7);}
+.arrow svg{width:15px;height:15px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
 
-/* ─── COMING SOON CARD ─── */
-.proj-card.coming-soon{cursor:default;opacity:0.55;}
-.proj-card.coming-soon:hover{transform:none;box-shadow:0 0 40px rgba(109,40,217,0.08);}
-
-/* ─── LOGOUT ─── */
-.logout-btn{
-  position:fixed;top:20px;right:24px;z-index:50;
-  font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;
-  text-transform:uppercase;color:rgba(167,139,250,0.5);
-  background:rgba(139,92,246,0.08);border:1px solid rgba(167,139,250,0.15);
-  border-radius:100px;padding:8px 16px;cursor:pointer;
-  transition:all 0.3s;text-decoration:none;
+/* ══ PREVIEW MOCKUPS ══ */
+/* Valle Escondido Golf */
+.mock-golf{
+  width:100%;height:100%;
+  background:linear-gradient(160deg,#051208 0%,#071a0e 50%,#0a2015 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+  padding:20px;
 }
-.logout-btn:hover{color:var(--purple-bright);border-color:rgba(167,139,250,0.4);background:rgba(139,92,246,0.15);}
-
-/* ─── ANIMATIONS ─── */
-@keyframes fadeInUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
-.proj-card{animation:fadeInUp 0.6s ease both;}
-.proj-card:nth-child(1){animation-delay:0.1s;}
-.proj-card:nth-child(2){animation-delay:0.2s;}
-.proj-card:nth-child(3){animation-delay:0.3s;}
-.proj-card:nth-child(4){animation-delay:0.4s;}
-
-/* ─── RESPONSIVE ─── */
-@media(max-width:768px){
-  .projects-grid{grid-template-columns:1fr;padding:0 20px 80px;}
-  .page-header{padding:60px 20px 40px;}
+.golf-logo-area{display:flex;flex-direction:column;align-items:center;gap:6px;}
+.golf-badge{
+  font-family:'Orbitron',sans-serif;font-size:8px;letter-spacing:3px;color:var(--gold);
+  border:1px solid rgba(255,215,0,.3);border-radius:100px;padding:3px 12px;
+  background:rgba(255,215,0,.06);
 }
+.golf-title{font-family:'Orbitron',sans-serif;font-size:11px;font-weight:900;color:#fff;letter-spacing:2px;text-align:center;}
+.golf-divider{width:60px;height:1px;background:linear-gradient(90deg,transparent,rgba(255,215,0,.5),transparent);}
+.golf-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;width:100%;max-width:280px;}
+.golf-card{height:38px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:3px;
+  background:rgba(255,255,255,.03);border:1px solid rgba(255,215,0,.12);}
+.golf-icon{font-size:12px;}
+.golf-lbl{font-size:7px;color:rgba(255,215,0,.5);font-family:'Orbitron',sans-serif;letter-spacing:1px;}
 
-/* ─── NEON GLOW AMBIENT ─── */
-.ambient{position:fixed;z-index:0;pointer-events:none;border-radius:50%;filter:blur(120px);opacity:0.12;}
-.ambient-1{width:600px;height:600px;background:var(--violet);top:-200px;right:-200px;}
-.ambient-2{width:500px;height:500px;background:var(--purple-deep);bottom:-150px;left:-150px;}
-.ambient-3{width:300px;height:300px;background:#3B0764;top:50%;left:50%;transform:translate(-50%,-50%);}
+/* Valle Escondido Admin */
+.mock-admin{
+  width:100%;height:100%;
+  background:linear-gradient(160deg,#050a14 0%,#070e1c 50%,#0a1424 100%);
+  display:flex;align-items:center;justify-content:center;gap:16px;padding:16px;
+}
+.admin-sidebar{width:55px;height:130px;border-radius:8px;background:rgba(37,99,235,.08);border:1px solid rgba(59,130,246,.15);display:flex;flex-direction:column;align-items:center;padding:10px 0;gap:10px;}
+.admin-dot{width:22px;height:22px;border-radius:6px;background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.2);}
+.admin-dot.active{background:rgba(59,130,246,.35);border-color:rgba(59,130,246,.6);}
+.admin-main{flex:1;height:130px;display:flex;flex-direction:column;gap:8px;}
+.admin-row{height:36px;border-radius:6px;background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.12);display:flex;align-items:center;padding:0 10px;gap:8px;}
+.admin-row-dot{width:6px;height:6px;border-radius:50%;background:rgba(59,130,246,.5);}
+.admin-row-line{flex:1;height:2px;border-radius:1px;background:rgba(255,255,255,.08);}
+.admin-row-badge{font-family:'Orbitron',sans-serif;font-size:6px;color:rgba(59,130,246,.7);letter-spacing:1px;background:rgba(59,130,246,.1);padding:2px 6px;border-radius:3px;}
+
+/* BarberPRO */
+.mock-barber{
+  width:100%;height:100%;
+  background:linear-gradient(160deg,#100505 0%,#1a0808 50%,#0f0505 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+}
+.barber-title{font-family:'Orbitron',sans-serif;font-size:13px;font-weight:900;color:#F97316;letter-spacing:2px;}
+.barber-sub{font-size:7px;color:rgba(249,115,22,.5);letter-spacing:3px;font-family:'Orbitron',sans-serif;}
+.barber-line{width:80px;height:2px;background:linear-gradient(90deg,#EF4444,#F97316);border-radius:1px;}
+.barber-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:160px;}
+.barber-btn{height:34px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-size:7.5px;font-weight:700;letter-spacing:1.5px;transition:all .3s;}
+.barber-btn.a{background:rgba(249,115,22,.15);border:1px solid rgba(249,115,22,.35);color:#F97316;}
+.barber-btn.b{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);color:#EF4444;}
+.barber-btn.c{background:rgba(234,179,8,.08);border:1px solid rgba(234,179,8,.2);color:#EAB308;}
+.barber-btn.d{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.4);}
+
+/* AutoArriendo */
+.mock-auto{
+  width:100%;height:100%;
+  background:linear-gradient(160deg,#050814 0%,#060b1a 50%,#080f20 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:16px;
+}
+.auto-header{display:flex;align-items:center;gap:8px;}
+.auto-logo-text{font-family:'Orbitron',sans-serif;font-size:10px;font-weight:900;color:var(--p3);letter-spacing:1px;}
+.auto-badge{font-size:7px;color:rgba(52,211,153,.7);background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.2);border-radius:4px;padding:2px 6px;font-family:'Orbitron',sans-serif;letter-spacing:1px;}
+.auto-card-row{display:flex;gap:8px;width:100%;max-width:240px;}
+.auto-card{flex:1;border-radius:8px;background:rgba(139,92,246,.07);border:1px solid rgba(139,92,246,.18);padding:10px;text-align:center;}
+.auto-card-num{font-family:'Orbitron',sans-serif;font-size:14px;font-weight:900;color:var(--p3);}
+.auto-card-lbl{font-size:6.5px;color:rgba(255,255,255,.3);letter-spacing:1.5px;font-family:'Orbitron',sans-serif;margin-top:2px;}
+.auto-bar{width:100%;max-width:240px;height:3px;border-radius:2px;background:linear-gradient(90deg,var(--p1),var(--p3));}
+.auto-items{display:flex;flex-direction:column;gap:5px;width:100%;max-width:240px;}
+.auto-item{height:18px;border-radius:4px;background:rgba(255,255,255,.03);border:1px solid rgba(167,139,250,.08);}
+
+/* Bambinolli */
+.mock-bambi{
+  width:100%;height:100%;
+  background:linear-gradient(160deg,#120a05 0%,#1c1008 50%,#120a05 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+}
+.bambi-title{font-family:'Orbitron',sans-serif;font-size:13px;font-weight:900;letter-spacing:2px;color:#E8A840;}
+.bambi-sub{font-size:7px;color:rgba(232,168,64,.4);letter-spacing:4px;font-family:'Orbitron',sans-serif;}
+.bambi-divider{width:70px;height:1px;background:linear-gradient(90deg,transparent,rgba(232,168,64,.4),transparent);}
+.bambi-items{display:flex;gap:8px;}
+.bambi-item{width:44px;height:56px;border-radius:8px;background:rgba(232,168,64,.06);border:1px solid rgba(232,168,64,.14);display:flex;align-items:center;justify-content:center;font-size:18px;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .grid{grid-template-columns:1fr 1fr;}
+  .grid .card:nth-child(1),.grid .card:nth-child(2){grid-column:span 1;}
+}
+@media(max-width:640px){
+  .grid{grid-template-columns:1fr;padding:0 20px 80px;}
+  .hero{padding:64px 20px 48px;}
+  .counter-bar{padding:0 20px;}
+}
 </style>
 </head>
 <body>
 
-<canvas id="particles"></canvas>
-<div class="ambient ambient-1"></div>
-<div class="ambient ambient-2"></div>
-<div class="ambient ambient-3"></div>
+<canvas id="cvs"></canvas>
+<div class="blob b1"></div>
+<div class="blob b2"></div>
+<div class="blob b3"></div>
 
-<!-- ═══════════════════════════════════════════
-     LOGIN SCREEN
-════════════════════════════════════════════ -->
-<div id="login-screen">
-  <div class="login-box">
-    <div class="login-logo">
-      <!-- Logo Amazing Ideas (white) -->
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" height="52" fill="none">
-        <text x="0" y="58" font-family="Orbitron,sans-serif" font-weight="900" font-size="46" fill="white" letter-spacing="-1">AMAZING</text>
-        <text x="0" y="78" font-family="Inter,sans-serif" font-weight="300" font-size="16" fill="rgba(255,255,255,0.55)" letter-spacing="8">IDEAS</text>
+<!-- ══════════════════════════════════════
+     LOGIN
+══════════════════════════════════════ -->
+<div id="lg">
+  <div class="lbox">
+    <div class="llogo">
+      <svg width="180" height="48" viewBox="0 0 180 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <text x="0" y="34" font-family="Orbitron,sans-serif" font-weight="900" font-size="28" fill="white" letter-spacing="-1">AMAZING</text>
+        <text x="2" y="47" font-family="Inter,sans-serif" font-weight="300" font-size="11" fill="rgba(167,139,250,0.6)" letter-spacing="7">IDEAS</text>
       </svg>
     </div>
-    <div class="login-title">Acceso Restringido</div>
-    <div class="login-field">
+    <div class="lbadge">· Acceso Privado ·</div>
+    <div class="lfield">
       <label>Usuario</label>
-      <input type="text" id="login-user" placeholder="Ingresa tu usuario" autocomplete="username">
+      <input type="text" id="lu" placeholder="Tu usuario" autocomplete="username">
     </div>
-    <div class="login-field">
+    <div class="lfield">
       <label>Contraseña</label>
-      <input type="password" id="login-pass" placeholder="••••••••" autocomplete="current-password">
+      <input type="password" id="lp" placeholder="••••••••" autocomplete="current-password">
     </div>
-    <button class="login-btn" onclick="checkLogin()">INGRESAR</button>
-    <div class="login-error" id="login-error">Usuario o contraseña incorrectos</div>
-    <div class="login-hint">Acceso exclusivo · Amazing Ideas</div>
+    <button class="lbtn" onclick="login()">INGRESAR →</button>
+    <div class="lerr" id="lerr">Usuario o contraseña incorrectos</div>
+    <div class="lhint">Acceso exclusivo · Jaime Solorza</div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════
-     MAIN PAGE
-════════════════════════════════════════════ -->
-<div id="main-page">
-  <a href="javascript:doLogout()" class="logout-btn">Cerrar Sesión</a>
+<!-- ══════════════════════════════════════
+     APP
+══════════════════════════════════════ -->
+<div id="app">
+  <a href="javascript:logout()" class="logout">Salir</a>
 
-  <header class="page-header">
-    <div class="eyebrow"><span class="eyebrow-dot"></span>Portafolio Privado</div>
-    <h1 class="page-title">
-      Proyectos que<br>
-      <span class="line-purple">Impactan</span>
-    </h1>
-    <p class="page-subtitle">Cada proyecto es una idea hecha realidad — tecnología, diseño y estrategia al servicio del negocio.</p>
+  <header class="hero">
+    <div class="eyebrow"><span class="edot"></span>Portafolio Privado · Amazing Ideas</div>
+    <h1 class="title">Proyectos que<br><span class="grd">Impactan</span></h1>
+    <p class="subtitle">Ideas convertidas en productos digitales de alto impacto. Tecnología, diseño y estrategia en cada proyecto.</p>
     <div class="divider"></div>
   </header>
 
-  <div class="projects-grid">
+  <div class="counter-bar">
+    <div class="ctr-item"><div class="ctr-num">5</div><div class="ctr-lbl">Proyectos</div></div>
+    <div class="ctr-item"><div class="ctr-num">4</div><div class="ctr-lbl">Industrias</div></div>
+    <div class="ctr-item"><div class="ctr-num">100%</div><div class="ctr-lbl">Live en Vercel</div></div>
+    <div class="ctr-item"><div class="ctr-num">AI</div><div class="ctr-lbl">Powered</div></div>
+  </div>
 
-    <!-- ── AUTOARRIENDO ── -->
-    <a href="https://autoarriendo.vercel.app" target="_blank" class="proj-card">
-      <div class="proj-preview">
-        <div class="proj-preview-mockup">
-          <div class="mockup-screen">
-            <!-- Simulated AutoArriendo UI -->
-            <div style="font-family:'Orbitron',sans-serif;font-size:9px;color:#A78BFA;letter-spacing:2px;margin-bottom:6px;">AUTO.ARRIENDO</div>
-            <div class="mockup-bar"></div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px;width:80%;">
-              <div style="height:30px;border-radius:4px;background:rgba(139,92,246,0.15);border:1px solid rgba(139,92,246,0.25);"></div>
-              <div style="height:30px;border-radius:4px;background:rgba(139,92,246,0.08);border:1px solid rgba(139,92,246,0.15);"></div>
+  <div class="grid">
+
+    <!-- ① Valle Escondido Golf — FEATURED -->
+    <a class="card" href="https://valle-escondido-golf.vercel.app/" target="_blank">
+      <div class="preview">
+        <div class="preview-inner">
+          <div class="mock-golf">
+            <div class="golf-logo-area">
+              <div class="golf-badge">Lo Barnechea · Santiago</div>
+              <div class="golf-title">VALLE ESCONDIDO<br>GOLF & COUNTRY CLUB</div>
             </div>
-            <div class="mockup-line" style="margin-top:8px;"></div>
-            <div class="mockup-line short"></div>
-          </div>
-        </div>
-        <div class="proj-preview-overlay"></div>
-      </div>
-      <span class="proj-status status-live">● Live</span>
-      <div class="proj-body">
-        <span class="proj-tag">PropTech · IA</span>
-        <div class="proj-name">Auto.Arriendo</div>
-        <p class="proj-desc">Tu cartera de arriendos en piloto automático. Gestión inteligente de propiedades, contratos digitales y cobranza automatizada con IA para dueños e inmobiliarias.</p>
-        <div class="proj-footer-row">
-          <span class="proj-url">autoarriendo.vercel.app</span>
-          <div class="proj-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
-        </div>
-      </div>
-    </a>
-
-    <!-- ── BARBEPRO ── -->
-    <a href="https://barbepro.vercel.app" target="_blank" class="proj-card">
-      <div class="proj-preview">
-        <div class="proj-preview-mockup">
-          <div class="mockup-screen" style="background:linear-gradient(135deg,rgba(20,10,10,0.9),rgba(30,10,10,0.9));border-color:rgba(255,100,50,0.25);">
-            <div style="font-family:'Orbitron',sans-serif;font-size:9px;color:#F97316;letter-spacing:2px;margin-bottom:8px;">BARBAPRO</div>
-            <div style="width:70%;height:3px;border-radius:2px;background:linear-gradient(90deg,#F97316,#EF4444);margin-bottom:10px;"></div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;width:85%;">
-              <div style="height:36px;border-radius:4px;background:rgba(249,115,22,0.12);border:1px solid rgba(249,115,22,0.3);display:flex;align-items:center;justify-content:center;font-size:7px;color:#F97316;font-family:Orbitron,sans-serif;">CORTE</div>
-              <div style="height:36px;border-radius:4px;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);display:flex;align-items:center;justify-content:center;font-size:7px;color:#EF4444;font-family:Orbitron,sans-serif;">BARBA</div>
+            <div class="golf-divider"></div>
+            <div class="golf-grid">
+              <div class="golf-card"><span class="golf-icon">⛳</span><span class="golf-lbl">GOLF</span></div>
+              <div class="golf-card"><span class="golf-icon">🎾</span><span class="golf-lbl">TENIS</span></div>
+              <div class="golf-card"><span class="golf-icon">🏊</span><span class="golf-lbl">PISCINA</span></div>
+              <div class="golf-card"><span class="golf-icon">🍽️</span><span class="golf-lbl">RESTO</span></div>
             </div>
           </div>
         </div>
-        <div class="proj-preview-overlay"></div>
+        <div class="preview-overlay"></div>
       </div>
-      <span class="proj-status status-live">● Live</span>
-      <div class="proj-body">
-        <span class="proj-tag">BarberTech · SaaS</span>
-        <div class="proj-name">BarbaPRO</div>
-        <p class="proj-desc">Sistema de registro y gestión para barberías. Control de servicios, ingresos diarios, reportes semanales y resúmenes por WhatsApp para el barbero profesional.</p>
-        <div class="proj-footer-row">
-          <span class="proj-url">barbepro.vercel.app</span>
-          <div class="proj-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+      <span class="status live">● Live</span>
+      <div class="cbody">
+        <span class="tag">Golf · Country Club · Real Estate</span>
+        <div class="cname">Valle Escondido Golf</div>
+        <p class="cdesc">Sitio institucional para el exclusivo club de golf y country club ubicado en Lo Barnechea. Golf de 9 hoyos, tenis, pádel, spa, restaurante gourmet y eventos privados al pie de los Andes.</p>
+        <div class="cfoot">
+          <span class="curl">valle-escondido-golf.vercel.app</span>
+          <div class="arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
         </div>
       </div>
     </a>
 
-    <!-- ── VALLE ESCONDIDO ── -->
-    <a href="https://valleescondido.vercel.app" target="_blank" class="proj-card" id="card-valle">
-      <div class="proj-preview">
-        <div class="proj-preview-mockup">
-          <div class="mockup-screen" style="background:linear-gradient(135deg,rgba(5,15,5,0.9),rgba(10,20,10,0.9));border-color:rgba(52,211,153,0.25);">
-            <div style="font-family:'Orbitron',sans-serif;font-size:7px;color:#34D399;letter-spacing:2px;margin-bottom:8px;">VALLE ESCONDIDO</div>
-            <div style="width:70%;height:3px;border-radius:2px;background:linear-gradient(90deg,#059669,#34D399);margin-bottom:10px;"></div>
-            <div class="mockup-line" style="background:rgba(52,211,153,0.2);"></div>
-            <div class="mockup-line short" style="background:rgba(52,211,153,0.12);"></div>
-            <div style="width:50px;height:20px;border-radius:6px;background:rgba(52,211,153,0.2);border:1px solid rgba(52,211,153,0.4);margin-top:8px;display:flex;align-items:center;justify-content:center;font-size:6px;color:#34D399;font-family:Orbitron,sans-serif;">VER MÁS</div>
+    <!-- ② Valle Escondido Admin -->
+    <a class="card" href="https://valle-escondido-admin.vercel.app/login" target="_blank">
+      <div class="preview">
+        <div class="preview-inner">
+          <div class="mock-admin">
+            <div class="admin-sidebar">
+              <div class="admin-dot active"></div>
+              <div class="admin-dot"></div>
+              <div class="admin-dot"></div>
+              <div class="admin-dot"></div>
+            </div>
+            <div class="admin-main">
+              <div style="font-family:'Orbitron',sans-serif;font-size:8px;color:rgba(59,130,246,.7);letter-spacing:2px;margin-bottom:4px;">DASHBOARD</div>
+              <div class="admin-row"><div class="admin-row-dot"></div><div class="admin-row-line"></div><div class="admin-row-badge">ADMIN</div></div>
+              <div class="admin-row"><div class="admin-row-dot" style="background:rgba(52,211,153,.5)"></div><div class="admin-row-line"></div></div>
+              <div class="admin-row"><div class="admin-row-dot" style="background:rgba(251,191,36,.5)"></div><div class="admin-row-line"></div><div class="admin-row-badge" style="color:rgba(251,191,36,.7);background:rgba(251,191,36,.1);">9 HOYOS</div></div>
+            </div>
           </div>
         </div>
-        <div class="proj-preview-overlay"></div>
+        <div class="preview-overlay"></div>
       </div>
-      <span class="proj-status status-live">● Live</span>
-      <div class="proj-body">
-        <span class="proj-tag">Inmobiliaria · Web</span>
-        <div class="proj-name">Valle Escondido</div>
-        <p class="proj-desc">Sitio web institucional para exclusivo desarrollo inmobiliario en Lo Barnechea. Presentación de propiedades, club de golf, amenidades y cotización online.</p>
-        <div class="proj-footer-row">
-          <span class="proj-url" id="valle-url">valleescondido.vercel.app</span>
-          <div class="proj-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+      <span class="status admin">⚙ Admin</span>
+      <div class="cbody">
+        <span class="tag">Panel Admin · Dashboard</span>
+        <div class="cname">VE Admin Panel</div>
+        <p class="cdesc">Sistema de gestión interna del club. Administración de socios, reservas de canchas, eventos y control de acceso con múltiples roles: super admin, coordinadores y staff.</p>
+        <div class="cfoot">
+          <span class="curl">valle-escondido-admin.vercel.app</span>
+          <div class="arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
         </div>
       </div>
     </a>
 
-    <!-- ── PRÓXIMAMENTE ── -->
-    <div class="proj-card coming-soon">
-      <div class="proj-preview">
-        <div class="proj-preview-mockup">
-          <div class="mockup-screen" style="border-color:rgba(167,139,250,0.15);">
-            <div style="font-size:24px;opacity:0.3;margin-bottom:8px;">✦</div>
-            <div style="font-family:'Orbitron',sans-serif;font-size:8px;color:rgba(167,139,250,0.4);letter-spacing:3px;">PRÓXIMAMENTE</div>
+    <!-- ③ BarberPRO -->
+    <a class="card" href="https://barberpro-eight.vercel.app/" target="_blank">
+      <div class="preview">
+        <div class="preview-inner">
+          <div class="mock-barber">
+            <div class="barber-title">BARBERSHOP</div>
+            <div class="barber-sub">ELITE · SANTIAGO</div>
+            <div class="barber-line"></div>
+            <div class="barber-grid">
+              <div class="barber-btn a">CORTE</div>
+              <div class="barber-btn b">BARBA</div>
+              <div class="barber-btn c">COMBO</div>
+              <div class="barber-btn d">+ INFO</div>
+            </div>
           </div>
         </div>
-        <div class="proj-preview-overlay"></div>
+        <div class="preview-overlay"></div>
       </div>
-      <span class="proj-status status-soon">En Desarrollo</span>
-      <div class="proj-body">
-        <span class="proj-tag">Nuevo Proyecto</span>
-        <div class="proj-name" style="color:rgba(255,255,255,0.3);">Próximamente</div>
-        <p class="proj-desc" style="color:rgba(255,255,255,0.2);">Un nuevo proyecto de Amazing Ideas en construcción. Innovación, tecnología y diseño de alto impacto.</p>
-        <div class="proj-footer-row">
-          <span class="proj-url" style="color:rgba(167,139,250,0.2);">amazingideas.cl</span>
-          <div class="proj-arrow" style="opacity:0.3;"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+      <span class="status live">● Live</span>
+      <div class="cbody">
+        <span class="tag">BarberTech · Landing Web</span>
+        <div class="cname">BarberShop Elite</div>
+        <p class="cdesc">Sitio web profesional para barbería de élite en Santiago. Reserva de servicios, presentación de estilos, catálogo de servicios y contacto directo — donde el estilo se encuentra con la tradición.</p>
+        <div class="cfoot">
+          <span class="curl">barberpro-eight.vercel.app</span>
+          <div class="arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
         </div>
       </div>
-    </div>
+    </a>
+
+    <!-- ④ AutoArriendo -->
+    <a class="card" href="https://autoarriendo.vercel.app/" target="_blank">
+      <div class="preview">
+        <div class="preview-inner">
+          <div class="mock-auto">
+            <div class="auto-header">
+              <span class="auto-logo-text">AUTO.ARRIENDO</span>
+              <span class="auto-badge">AI</span>
+            </div>
+            <div class="auto-card-row">
+              <div class="auto-card"><div class="auto-card-num">12</div><div class="auto-card-lbl">PROPIEDADES</div></div>
+              <div class="auto-card"><div class="auto-card-num">98%</div><div class="auto-card-lbl">COBRANZA</div></div>
+              <div class="auto-card"><div class="auto-card-num">0</div><div class="auto-card-lbl">MOROSIDAD</div></div>
+            </div>
+            <div class="auto-bar"></div>
+            <div class="auto-items">
+              <div class="auto-item"></div>
+              <div class="auto-item" style="width:80%;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="preview-overlay"></div>
+      </div>
+      <span class="status live">● Live</span>
+      <div class="cbody">
+        <span class="tag">PropTech · SaaS · IA</span>
+        <div class="cname">Auto.Arriendo</div>
+        <p class="cdesc">Tu cartera de arriendos en piloto automático. Gestión de propiedades, contratos digitales, cobranza automatizada y agentes IA para dueños, corredores e inversionistas inmobiliarios.</p>
+        <div class="cfoot">
+          <span class="curl">autoarriendo.vercel.app</span>
+          <div class="arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+        </div>
+      </div>
+    </a>
+
+    <!-- ⑤ Bambinolli -->
+    <a class="card" href="https://bambinolli-web.vercel.app/" target="_blank">
+      <div class="preview">
+        <div class="preview-inner">
+          <div class="mock-bambi">
+            <div class="bambi-title">BAMBINOLLI</div>
+            <div class="bambi-sub">· EXPERIENCE ·</div>
+            <div class="bambi-divider"></div>
+            <div class="bambi-items">
+              <div class="bambi-item">🍕</div>
+              <div class="bambi-item">🍷</div>
+              <div class="bambi-item">✨</div>
+            </div>
+          </div>
+        </div>
+        <div class="preview-overlay"></div>
+      </div>
+      <span class="status live">● Live</span>
+      <div class="cbody">
+        <span class="tag">Gastronomía · Branding Web</span>
+        <div class="cname">Bambinolli</div>
+        <p class="cdesc">Presencia digital premium para una experiencia gastronómica única. Identidad visual, menú interactivo y reservas online que transmiten la esencia y el sabor de una marca que enamora.</p>
+        <div class="cfoot">
+          <span class="curl">bambinolli-web.vercel.app</span>
+          <div class="arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+        </div>
+      </div>
+    </a>
 
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════
-     SCRIPTS
-════════════════════════════════════════════ -->
+<!-- ══════════════════════════════════════
+     JS
+══════════════════════════════════════ -->
 <script>
-// ── CREDENTIALS (change here) ──
-const VALID_USER = 'amazing';
-const VALID_PASS = 'ideas2025';
-const SESSION_KEY = 'ai_proj_auth';
-
-function checkLogin(){
-  const u = document.getElementById('login-user').value.trim();
-  const p = document.getElementById('login-pass').value;
-  if(u === VALID_USER && p === VALID_PASS){
-    sessionStorage.setItem(SESSION_KEY,'1');
-    showMain();
-  } else {
-    const err = document.getElementById('login-error');
-    err.style.display='block';
-    document.getElementById('login-pass').value='';
-    setTimeout(()=>err.style.display='none',3000);
-  }
+/* ── AUTH ── */
+const U='amazing', P='ideas2025', KEY='ai_auth_v1';
+function login(){
+  const u=document.getElementById('lu').value.trim();
+  const p=document.getElementById('lp').value;
+  if(u===U&&p===P){sessionStorage.setItem(KEY,'1');show();}
+  else{const e=document.getElementById('lerr');e.style.display='block';document.getElementById('lp').value='';setTimeout(()=>e.style.display='none',3200);}
 }
-function showMain(){
-  document.getElementById('login-screen').style.display='none';
-  document.getElementById('main-page').style.display='block';
-}
-function doLogout(){
-  sessionStorage.removeItem(SESSION_KEY);
-  location.reload();
-}
-// ── AUTO-LOGIN IF SESSION EXISTS ──
-if(sessionStorage.getItem(SESSION_KEY)==='1') showMain();
+function show(){document.getElementById('lg').style.display='none';document.getElementById('app').style.display='block';}
+function logout(){sessionStorage.removeItem(KEY);location.reload();}
+if(sessionStorage.getItem(KEY)==='1')show();
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&document.getElementById('lg').style.display!=='none')login();});
 
-// ── ENTER KEY ──
-document.addEventListener('keydown',e=>{if(e.key==='Enter' && document.getElementById('login-screen').style.display!=='none') checkLogin();});
-
-// ── PARTICLES ──
+/* ── PARTICLES ── */
 (function(){
-  const c=document.getElementById('particles'),ctx=c.getContext('2d');
-  let W=window.innerWidth,H=window.innerHeight;
-  c.width=W;c.height=H;
-  const pts=[];
-  for(let i=0;i<60;i++) pts.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.2+0.2,vx:(Math.random()-0.5)*0.25,vy:(Math.random()-0.5)*0.25,a:Math.random()*Math.PI*2});
-  function draw(){
-    ctx.clearRect(0,0,W,H);
+  const c=document.getElementById('cvs'),x=c.getContext('2d');
+  let W=c.width=innerWidth,H=c.height=innerHeight;
+  const pts=Array.from({length:70},()=>({
+    x:Math.random()*W,y:Math.random()*H,
+    r:Math.random()*1.3+.2,
+    vx:(Math.random()-.5)*.22,vy:(Math.random()-.5)*.22,
+    a:Math.random()*Math.PI*2
+  }));
+  (function draw(){
+    x.clearRect(0,0,W,H);
     pts.forEach(p=>{
-      p.x+=p.vx;p.y+=p.vy;p.a+=0.008;
+      p.x+=p.vx;p.y+=p.vy;p.a+=.007;
       if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;
-      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle=`rgba(167,139,250,${0.2+Math.sin(p.a)*0.15})`;ctx.fill();
+      x.beginPath();x.arc(p.x,p.y,p.r,0,Math.PI*2);
+      x.fillStyle=`rgba(167,139,250,${.18+Math.sin(p.a)*.12})`;x.fill();
     });
     requestAnimationFrame(draw);
-  }
-  draw();
-  window.addEventListener('resize',()=>{W=c.width=window.innerWidth;H=c.height=window.innerHeight;});
+  })();
+  window.addEventListener('resize',()=>{W=c.width=innerWidth;H=c.height=innerHeight;});
 })();
 </script>
 </body>
